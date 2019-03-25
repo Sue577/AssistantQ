@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+Class-Path: jcl-over-slf4j-1.7.25.jar javax.mail-1.5.6.jar validation-
+ api-1.1.0.Final.jar pagehelper-5.1.2.jar javassist-3.21.0-GA.jar tomc
+ at-annotations-api-8.5.29.jar pagehelper-spring-boot-starter-1.2.2.ja
+ r stax-api-1.0.1.jar spring-jdbc-4.3.15.RELEASE.jar tomcat-jdbc-8.5.2
+ 9.jar spring-boot-starter-logging-1.5.11.BUILD-20180405.071254-56.jar
+  poi-ooxml-schemas-3.14.jar mybatis-spring-boot-starter-1.3.0.jar spr
+ ing-aop-4.3.15.RELEASE.jar spring-beans-4.3.15.RELEASE.jar spring-con
+ text-4.3.15.RELEASE.jar hibernate-jpa-2.1-api-1.0.0.Final.jar spring-
+ web-4.3.15.RELEASE.jar ognl-3.0.8.jar logback-classic-1.1.11.jar dom4
+ j-1.6.1.jar activation-1.1.jar poi-ooxml-3.14.jar mybatis-3.4.4.jar c
+ ommons-codec-1.10.jar hibernate-commons-annotations-5.0.1.Final.jar g
+ roovy-2.4.15.jar poi-3.14.jar spring-boot-starter-data-jpa-1.5.11.BUI
+ LD-20180405.071254-56.jar javax.transaction-api-1.2.jar spring-contex
+ t-support-4.3.15.RELEASE.jar spring-boot-starter-aop-1.5.11.BUILD-201
+ 80405.071254-56.jar spring-boot-autoconfigure-1.5.11.BUILD-20180405.0
+ 71254-56.jar curvesapi-1.03.jar mybatis-spring-boot-autoconfigure-1.3
+ .0.jar spring-tx-4.3.15.RELEASE.jar classmate-1.3.4.jar spring-aspect
+ s-4.3.15.RELEASE.jar unbescape-1.1.0.RELEASE.jar spring-expression-4.
+ 3.15.RELEASE.jar spring-boot-starter-jdbc-1.5.11.BUILD-20180405.07125
+ 4-56.jar jackson-annotations-2.8.0.jar jackson-databind-2.8.11.1.jar 
+ spring-boot-devtools-1.5.11.BUILD-20180405.071254-56.jar tomcat-embed
+ -core-8.5.29.jar jboss-logging-3.3.2.Final.jar pagehelper-spring-boot
+ -autoconfigure-1.2.2.jar spring-boot-starter-thymeleaf-1.5.11.BUILD-2
+ 0180405.071254-56.jar thymeleaf-layout-dialect-1.4.0.jar spring-boot-
+ starter-tomcat-1.5.11.BUILD-20180405.071254-56.jar logback-core-1.1.1
+ 1.jar log4j-over-slf4j-1.7.25.jar spring-data-commons-1.13.11.RELEASE
+ .jar spring-boot-1.5.11.BUILD-20180405.071254-56.jar spring-boot-star
+ ter-1.5.11.BUILD-20180405.071254-56.jar jackson-core-2.8.11.jar jande
+ x-2.0.0.Final.jar thymeleaf-2.1.6.RELEASE.jar aspectjweaver-1.8.13.ja
+ r jul-to-slf4j-1.7.25.jar spring-orm-4.3.15.RELEASE.jar spring-data-j
+ pa-1.11.11.RELEASE.jar hibernate-core-5.0.12.Final.jar snakeyaml-1.17
+ .jar spring-webmvc-4.3.15.RELEASE.jar slf4j-api-1.7.25.jar jsqlparser
+ -1.0.jar antlr-2.7.7.jar spring-boot-starter-web-1.5.11.BUILD-2018040
+ 5.071254-56.jar mybatis-spring-1.3.1.jar spring-core-4.3.15.RELEASE.j
+ ar tomcat-embed-el-8.5.29.jar spring-boot-starter-mail-1.5.11.BUILD-2
+ 0180405.071254-56.jar thymeleaf-spring4-2.1.6.RELEASE.jar hibernate-v
+ alidator-5.3.6.Final.jar hibernate-entitymanager-5.0.12.Final.jar mys
+ ql-connector-java-5.1.46.jar tomcat-embed-websocket-8.5.29.jar tomcat
+ -juli-8.5.29.jar xmlbeans-2.6.0.jar
+Main-Class: com.wsq.AssistantQ.AssistantQApplication
+
