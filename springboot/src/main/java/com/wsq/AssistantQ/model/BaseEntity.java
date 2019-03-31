@@ -7,20 +7,20 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * @author CYann
- * @date 2018-02-25 23:01
- *  基础类
- * -编号 objectNum(String varchar)
- * -创建时间 creatTime(data datatime)
- * -修改时间 updateTime(data datatime)
- * -删除时间 delTime(data datatime)
+ * @author WSQ
+ * @date 2019/3/26 12:37
+ * 基础类
+ * 编号 objectId
+ * 创建时间 creatTime
+ * 修改时间 updateTime
+ * 删除时间 delTime
  */
 
 @MappedSuperclass
 public class BaseEntity {
     @Id
     @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid" , strategy = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
     private String objectId;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)

@@ -7,8 +7,11 @@ spring:
     show-sql: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dbarchivebook
+#    数据库地址
+    url: jdbc:mysql://127.0.0.1:3306/dbassistantq
+#    数据库账号
     username: root
+#    数据库密码
     password: 5471
   mail:
     host: smtphm.qiye.163.com

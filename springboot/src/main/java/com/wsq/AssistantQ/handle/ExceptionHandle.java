@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 /**
- * @author CYann
+ * @author WSQ
  * @date 2018-02-26 21:24
  */
 @ControllerAdvice

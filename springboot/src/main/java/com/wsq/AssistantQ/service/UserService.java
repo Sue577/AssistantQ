@@ -3,204 +3,244 @@ package com.wsq.AssistantQ.service;
 import com.wsq.AssistantQ.enums.ResultEnum;
 import com.wsq.AssistantQ.exception.MyException;
 import com.wsq.AssistantQ.model.UserModel;
-import com.wsq.AssistantQ.respository.UserRepository;
+import com.wsq.AssistantQ.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
-import javax.persistence.criteria.*;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
- * @author CYann
- * @date 2018-02-26 20:38
+ * @author WSQ
+ * @date 2019/3/28 10:20
  */
 @Service
 public class UserService {
+
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private BaseService baseService;
 
-    //增加学生用户
-    @Transactional
-    public void add(UserModel userModel){
-        baseService.add(userRepository,userModel);
-        userRepository.save(userModel);
+    //用户登录
+    public UserModel findByUserIdAndUserPwdAndDelTimeIsNull(String userId, String userPwd) {
+        return userRepository.findByUserIdAndUserPwdAndDelTimeIsNull(userId, userPwd);
     }
 
-    //动态修改学生用户
-    @Transactional
-    public void update(UserModel userModel) {
-        UserModel userItem = userRepository.findById(userModel.getObjectId());
-        if (userItem == null) {
-            throw new MyException(ResultEnum.ERROR_101);
-        } else {
-            if(userModel.getStuNumber() !=null && userItem.getStuNumber().equals(userModel.getStuNumber()) == false ){
-                userItem.setStuNumber(userModel.getStuNumber());
+    //新增用户
+    public void add(UserModel userModel) {
+
+        //验证用户ID是否已存在
+        int flag=1;
+        List<UserModel> list=findAllUser();
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).getUserId().equals(userModel.getUserId())){
+                flag=0;
             }
-            if(userModel.getStuName() != null && userItem.getStuName().equals(userModel.getStuName()) == false ){
-                userItem.setStuName(userModel.getStuName());
+        }
+
+        if(flag==0){//用户ID已存在，用户ID是唯一的，说明该用户已存在
+            throw new MyException(ResultEnum.ERROR_107);
+        }
+        else {//用户ID不存在
+
+            //添加基础信息 编号和创建时间
+            baseService.add(userRepository, userModel);
+
+            //随机添加头像
+            Random random = new Random();
+            int randomint = random.nextInt(9) + 1;
+            switch (randomint) {
+                case 0:
+                    userModel.setUserImage("https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png");
+                    break;
+                case 1:
+                    userModel.setUserImage("https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png");
+                    break;
+                case 2:
+                    userModel.setUserImage("https://gw.alipayobjects.com/zos/rmsportal/gaOngJwsRYRaVAuXXcmB.png");
+                    break;
+                case 3:
+                    userModel.setUserImage("https://gw.alipayobjects.com/zos/rmsportal/ubnKSIfAJTxIgXOKlciN.png");
+                    break;
+                case 4:
+                    userModel.setUserImage("https://gw.alipayobjects.com/zos/rmsportal/WhxKECPNujWoWEFNdnJE.png");
+                    break;
+                case 5:
+                    userModel.setUserImage("https://gw.alipayobjects.com/zos/rmsportal/jZUIxmJycoymBprLOUbT.png");
+                    break;
+                case 6:
+                    userModel.setUserImage("https://gw.alipayobjects.com/zos/rmsportal/psOgztMplJMGpVEqfcgF.png");
+                    break;
+                case 7:
+                    userModel.setUserImage("https://gw.alipayobjects.com/zos/rmsportal/ZpBqSxLxVEXfcUNoPKrz.png");
+                    break;
+                case 8:
+                    userModel.setUserImage("https://gw.alipayobjects.com/zos/rmsportal/laiEnJdGHVOhJrUShBaJ.png");
+                    break;
+                case 9:
+                    userModel.setUserImage("https://gw.alipayobjects.com/zos/rmsportal/UrQsqscbKEpNuJcvBZBu.png");
+                    break;
             }
-            if(userModel.getStuClass() != null && userItem.getStuClass().equals(userModel.getStuClass()) == false ){
-                userItem.setStuClass(userModel.getStuClass());
-            }
-            if(userModel.getStuMajor() != null && userItem.getStuMajor().equals(userModel.getStuMajor()) == false ){
-                userItem.setStuMajor(userModel.getStuMajor());
-            }
-            if(userModel.getStuStartYear() != null && userItem.getStuStartYear().equals(userModel.getStuStartYear()) == false ){
-                userItem.setStuStartYear(userModel.getStuStartYear());
-            }
-            if(userModel.getStuEndYear() != null && userItem.getStuEndYear().equals(userModel.getStuEndYear()) == false){
-                userItem.setStuEndYear(userModel.getStuEndYear());
-            }
-            if(userItem.getRedParty() != userModel.getRedParty()){
-                userItem.setRedParty(userModel.getRedParty());
-            }
-            if(userItem.getStuPower() != userModel.getStuPower()){
-                userItem.setStuPower(userModel.getStuPower());
-            }
-            baseService.modify(userRepository,userItem);
-            userRepository.save(userItem);
+            //保存信息至数据库
+            userRepository.save(userModel);
         }
     }
 
-    //删除学生用户
+    //根据用户编号删除用户
     @Transactional
-    public void delete(UserModel userModel){
-        UserModel userItem = userRepository.findById(userModel.getObjectId());
-        if(userItem == null){
+    public void deleteByObjectId(UserModel userModel) {
+        UserModel userItem = userRepository.findByObjectId(userModel.getObjectId());
+        if (userItem == null) {
             throw new MyException(ResultEnum.ERROR_101);
-        }else {
+        } else {
             baseService.delete(userRepository, userItem);
         }
     }
 
-
-    //用户修改基本信息-联系方式
-    public void updateInfor(UserModel userModel){
-        UserModel userItem = userRepository.findById(userModel.getObjectId());
-        if(userItem == null){
+    //根据用户ID删除用户
+    @Transactional
+    public void deleteByUserId(UserModel userModel) {
+        UserModel userItem = userRepository.findByUserId(userModel.getUserId());
+        if (userItem == null) {
             throw new MyException(ResultEnum.ERROR_101);
-        }else {
-            if (userItem.getCurrentPhone() == null || userItem.getCurrentPhone().equals(userModel.getCurrentPhone()) == false) {
-                userItem.setCurrentPhone(userModel.getCurrentPhone());
+        } else {
+            baseService.delete(userRepository, userItem);
+        }
+    }
+
+    //根据用户编号重置用户密码为111111
+    public void resetPwd(UserModel userModel) {
+        UserModel userItem = userRepository.findByObjectId(userModel.getObjectId());
+        if (userItem == null) {
+            throw new MyException(ResultEnum.ERROR_101);
+        } else {
+            userItem.setUserPwd("111111");
+            userRepository.save(userItem);
+        }
+    }
+
+    //根据用户ID重置用户密码为111111
+    public void resetPwdByUserId(UserModel userModel) {
+        UserModel userItem = userRepository.findByUserId(userModel.getUserId());
+        if (userItem == null) {
+            throw new MyException(ResultEnum.ERROR_101);
+        } else {
+            userItem.setUserPwd("111111");
+            userRepository.save(userItem);
+        }
+    }
+
+    //自己更改自己的用户密码
+    public void modifyMyPwd(UserModel userModel,String objectId) {
+        UserModel userItem = userRepository.findByObjectId(objectId);
+        if (userItem == null) {
+            throw new MyException(ResultEnum.ERROR_101);
+        } else {
+            if (userItem.getUserPwd().equals(userModel.getUserPwd()) == true) {
+                userItem.setUserPwd(userModel.getUserNewPwd());
+                userRepository.save(userItem);
+            } else {
+                throw new MyException(ResultEnum.ERROR_105);
             }
-            userRepository.save(userItem);
         }
     }
 
-    //更改用户权限
-    public void updatePower(UserModel userModel){
-        UserModel userItem = userRepository.findById(userModel.getObjectId());
-        if(userItem == null){
+    //自己动态修改自己的用户信息
+    @Transactional
+    public void modifyMy(UserModel userModel,String objectId) {
+        UserModel userItem = userRepository.findByObjectId(objectId);
+        if (userItem == null) {
             throw new MyException(ResultEnum.ERROR_101);
-        }else {
-            userItem.setStuPower(userModel.getStuPower());
-            userRepository.save(userItem);
-        }
-    }
-
-    //增加用户联系方式
-    public void updateContract(String stuNumber, String mobilePhone, String loginEmail){
-        UserModel userItem = userRepository.findByStuNumber(stuNumber);
-        if(userItem == null){
-            throw new MyException(ResultEnum.ERROR_101);
-        }else {
+        } else {
+            if(userModel.getUserId() !=null && userItem.getUserId().equals(userModel.getUserId()) == false ){
+                userItem.setUserId(userModel.getUserId());
+            }
+            if(userModel.getUserPwd() !=null && userItem.getUserPwd().equals(userModel.getUserPwd()) == false ){
+                userItem.setUserPwd(userModel.getUserPwd());
+            }
+            if(userModel.getUserImage() !=null && userItem.getUserImage().equals(userModel.getUserImage()) == false ){
+                userItem.setUserImage(userModel.getUserImage());
+            }
+            if(userModel.getUserName() !=null && userItem.getUserName().equals(userModel.getUserName()) == false ){
+                userItem.setUserName(userModel.getUserName());
+            }
+            if(userModel.getUserEmail() !=null && userItem.getUserEmail().equals(userModel.getUserEmail()) == false ){
+                userItem.setUserEmail(userModel.getUserEmail());
+            }
+            if(userModel.getUserPhone() !=null && userItem.getUserPhone().equals(userModel.getUserPhone()) == false ){
+                userItem.setUserPhone(userModel.getUserPhone());
+            }
+            if(userModel.getUserType() !=null && userItem.getUserType().equals(userModel.getUserType()) == false ){
+                userItem.setUserType(userModel.getUserType());
+            }
             baseService.modify(userRepository,userItem);
-            userItem.setCurrentPhone(mobilePhone);
-            userItem.setCurrentEmail(loginEmail);
             userRepository.save(userItem);
         }
     }
 
+    //动态修改用户信息
+    @Transactional
+    public void modify(UserModel userModel) {
+        UserModel userItem = userRepository.findByObjectId(userModel.getObjectId());
+        if (userItem == null) {
+            throw new MyException(ResultEnum.ERROR_101);
+        } else {
+            if(userModel.getUserId() !=null && userItem.getUserId().equals(userModel.getUserId()) == false ){
+                userItem.setUserId(userModel.getUserId());
+            }
+            if(userModel.getUserPwd() !=null && userItem.getUserPwd().equals(userModel.getUserPwd()) == false ){
+                userItem.setUserPwd(userModel.getUserPwd());
+            }
+            if(userModel.getUserImage() !=null && userItem.getUserImage().equals(userModel.getUserImage()) == false ){
+                userItem.setUserImage(userModel.getUserImage());
+            }
+            if(userModel.getUserName() !=null && userItem.getUserName().equals(userModel.getUserName()) == false ){
+                userItem.setUserName(userModel.getUserName());
+            }
+            if(userModel.getUserEmail() !=null && userItem.getUserEmail().equals(userModel.getUserEmail()) == false ){
+                userItem.setUserEmail(userModel.getUserEmail());
+            }
+            if(userModel.getUserPhone() !=null && userItem.getUserPhone().equals(userModel.getUserPhone()) == false ){
+                userItem.setUserPhone(userModel.getUserPhone());
+            }
+            if(userModel.getUserType() !=null && userItem.getUserType().equals(userModel.getUserType()) == false ){
+                userItem.setUserType(userModel.getUserType());
+            }
+            baseService.modify(userRepository,userItem);
+            userRepository.save(userItem);
+        }
+    }
 
-
-
-    //查询所有用户
-    public List<UserModel> findAllUser(){
+    //查找所有用户
+    public List<UserModel> findAllUser() {
         List<UserModel> list = userRepository.findAllUser();
         return list;
     }
 
-    //主key查询
-    public UserModel findById(String id){
-        return userRepository.findById(id);
-    }
-
-
-
-    //姓名查询
-    public List<UserModel> findByStuName(String stuName){
-        List<UserModel> list = userRepository.findByStuName(stuName);
+    //根据用户类型查找用户
+    public List<UserModel> findByUserType(String userType) {
+        List<UserModel> list = userRepository.findByUserType(userType);
         return list;
     }
 
-    //学号查询
-    public UserModel findByStuNumber(String stuNumber){
-        return userRepository.findByStuNumber(stuNumber);
-    }
-
-    //学号、姓名查找
-    public List<UserModel> findByStuNameAndStuNumber(String stuName, String stuNumber){
-        List<UserModel> list = userRepository.findByStuNameAndStuNumber(stuName, stuNumber);
+    //根据用户姓名查找用户
+    public List<UserModel> findByUserName(String userName) {
+        List<UserModel> list = userRepository.findByUserName(userName);
         return list;
     }
 
-    //学号、是否党员查找
-    public List<UserModel> findByStuNumberAndIfRed(String stuNumber, int redParty){
-        List<UserModel> list = userRepository.findByStuNumberAndRedParty(stuNumber, redParty);
-        return list;
+    //根据用户ID查找用户
+    public UserModel findByUserId(String userId) {
+        UserModel userModel = userRepository.findByUserId(userId);
+        return userModel;
     }
 
-    //班级查询
-    public List<UserModel> findByStuClass(String stuClass){
-        List<UserModel> list = userRepository.findByStuClass(stuClass);
-        return list;
-    }
-
-    //专业查询
-    public List<UserModel> findByStuMajor(String stuMajor){
-        List<UserModel> list = userRepository.findByStuClass(stuMajor);
-        return list;
-    }
-
-    //根据 名字 学号 专业 毕业年份 入学年份 多条件动态查询课程
-    public List<UserModel> findAllByAdvancedForm(UserModel userModel) {
-        return userRepository.findAll(new Specification<UserModel>(){
-            @Override
-            public Predicate toPredicate(Root<UserModel> root, CriteriaQuery<?> query, CriteriaBuilder cb){
-                List<Predicate> list = new ArrayList<Predicate>();
-                list.add(cb.isNull(root.get("delTime")));
-                if(userModel != null && !StringUtils.isEmpty(userModel.getStuName()) ){
-                    list.add(cb.like(root.get("stuName"), "%"+ userModel.getStuName() + "%"));
-                }
-                if(userModel != null && !StringUtils.isEmpty(userModel.getStuNumber()) ){
-                    list.add(cb.like(root.get("stuNumber"), "%" + userModel.getStuNumber() +"%" ));
-                }
-                if(userModel != null && !StringUtils.isEmpty(userModel.getStuMajor()) ){
-                    list.add(cb.like(root.get("stuMajor"), "%"+ userModel.getStuMajor()+ "%"));
-                }
-                if(userModel != null && !StringUtils.isEmpty(userModel.getStuEndYear()) ){
-                    list.add(cb.like(root.get("stuEndYear"),"%"+ userModel.getStuEndYear()+ "%"));
-                }
-                if(userModel != null && !StringUtils.isEmpty(userModel.getStuStartYear()) ){
-                    list.add(cb.like(root.get("stuStartYear"), "%"+ userModel.getStuStartYear()+ "%"));
-                }
-                if(userModel != null && userModel.getRedParty() != 0 ){
-                    list.add(cb.equal(root.get("redParty"), Integer.valueOf(userModel.getRedParty())));
-                }
-                if(userModel != null && userModel.getStuPower() != 0 ){
-                    list.add(cb.equal(root.get("stuPower"), Integer.valueOf(userModel.getStuPower())));
-                }
-                Predicate[] p = new Predicate[list.size()];
-                return cb.and(list.toArray(p));
-            }
-        });
+    //根据编号查找用户
+    public UserModel findByObjectId(String objectId) {
+        UserModel userModel = userRepository.findByObjectId(objectId);
+        return userModel;
     }
 
 }

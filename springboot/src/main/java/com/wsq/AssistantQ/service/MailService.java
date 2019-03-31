@@ -7,7 +7,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import javax.mail.internet.MimeMessage;
 
 /**
- * @author CYann
+ * @author WSQ
  * @date 2018-04-28 19:47
  */
 public class MailService {

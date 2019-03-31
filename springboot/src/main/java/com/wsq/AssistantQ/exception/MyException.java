@@ -3,7 +3,7 @@ package com.wsq.AssistantQ.exception;
 import com.wsq.AssistantQ.enums.ResultEnum;
 
 /**
- * @author CYann
+ * @author WSQ
  * @date 2018-02-26 21:20
  */
 public class MyException extends RuntimeException {

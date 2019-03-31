@@ -7,12 +7,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * @author CYann
+ * @author WSQ
  * @date 2018-04-01 16:26
  */
 @Service
@@ -33,7 +36,7 @@ public class FileService {
     }
 
     //读取xlsx格式的excel文件，并将读取的数据存放到List<Map>中
-    public List<Map<String, String>> viewExcelFile(String fileType,MultipartFile file) {
+    public List<Map<String, String>> viewExcelFile(String fileType, MultipartFile file) {
         List<Map<String, String>> resultMap = new ArrayList<Map<String, String>>();
         try {
             if (fileType == "xlsx") {
@@ -43,7 +46,7 @@ public class FileService {
                 XSSFWorkbook wb = new XSSFWorkbook(byteArrayInputStream);
                 System.out.println(wb);
                 XSSFSheet sheets = wb.getSheetAt(0);
-                String item[] = new String[sheets.getRow(0).getLastCellNum()+1];
+                String item[] = new String[sheets.getRow(0).getLastCellNum() + 1];
                 // System.out.println(item);
                 for (int i = 0; i < sheets.getLastRowNum() + 1; i++) {
                     XSSFRow row = sheets.getRow(i);
@@ -58,7 +61,7 @@ public class FileService {
                             }
                         }
                     }
-                    if(i != 0)
+                    if (i != 0)
                         resultMap.add(tempMap);
                 }
             }
