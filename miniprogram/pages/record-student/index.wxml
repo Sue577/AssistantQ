@@ -1,0 +1,105 @@
+<!-- tab切换 -->
+<i-tabs current="{{ current }}" bindchange="handleChange">
+  <i-tab key="before" title="未审核" count="4"></i-tab>
+  <i-tab key="after" title="已审核"></i-tab>
+</i-tabs>
+
+<!-- 未审核列表 -->
+<i-cell-group wx:if="{{ before }}">
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件工程" label="06-28 13:00（3小时）" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="task" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="数据结构" label="06-28 13:00（3小时）" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="task" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件需求" label="06-28 13:00（3小时）" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="task" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件测试" label="06-28 13:00（3小时）" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="task" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 已审核列表 -->
+<i-cell-group wx:if="{{ after }}">
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件工程" label="06-28 13:00（3小时）" value="已通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="task_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="数据结构" label="06-28 13:00（3小时）" value="未通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="task_fill" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件需求" label="06-28 13:00（3小时）" value="已通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="task_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件测试" label="06-28 13:00（3小时）" value="已通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="task_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 新增按钮 -->
+<view class='add-icon' bindtap="handleOpenAdd">
+  <i-icon type="add" slot="icon" size="45" color="white" />
+</view>
+
+<!-- 页脚 -->
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="/pages/login/index" open-type="redirect" class="weui-footer__link">{{link}}</navigator>
+  </view>
+  <view class="weui-footer__text">{{copyright}}</view>
+</view>
+
+<!-- 新增对话框 -->
+<i-modal title="新增" wx:if="{{ addModal }}" visible="{{ addModal }}" bind:ok="handleOkAdd" bind:cancel="handleCancelAdd">
+  <i-input value="{{ recoCourse }}" maxlength="20" title="课程名称" autofocus placeholder="请输入课程名称" bind:change="recoCourseInput" />
+  <i-input value="{{ recoSubmitterName }}" maxlength="20" title="你的姓名" autofocus placeholder="请输入你的姓名" bind:change="recoSubmitterNameInput" />
+  <i-input value="{{ recoHours }}" maxlength="20" title="工作时长" autofocus placeholder="请输入小时数" bind:change="recoHoursInput" />
+  <view class='view'>工作日期</view>
+  <picker mode="date" value="{{recoDate}}" start="2018-09-01" end="2040-09-01" bindchange="recoDateInput">
+    <view class="weui-input" class="input-picker">2019-06-28</view>
+  </picker>
+  <view class='view'>工作描述</view>
+  <i-input value="{{ recoDesc }}" type="textarea" maxlength="200" autofocus placeholder="请输入工作描述(200字以内)" bind:change="recoDescInput" i-class="input-textarea" />
+</i-modal>
+
+<!-- 未审核的详情对话框 可进行修改和删除 -->
+<i-modal title="详情" wx:if="{{ detailModalBefore }}" visible="{{ detailModalBefore }}" actions="{{ actionsDetailBefore }}" bind:click="handleDetailClickBefore">
+  <i-input value="{{ recoCourse }}" title="课程名称" disabled/>
+  <i-input value="{{ recoSubmitterName }}" title="你的姓名" disabled/>
+  <i-input value="{{ recoHours }}" maxlength="20" title="工作时长" autofocus placeholder="请输入小时数" bind:change="recoHoursInput" />
+  <view class='view'>工作日期</view>
+  <picker mode="date" value="{{recoDate}}" start="2018-09-01" end="2040-09-01" bindchange="recoDateInput">
+    <view class="weui-input" class="input-picker">2019-06-28</view>
+  </picker>
+  <view class='view'>工作描述</view>
+  <i-input value="{{ recoDesc }}" type="textarea" maxlength="200" autofocus placeholder="请输入工作描述(200字以内)" bind:change="recoDescInput" i-class="input-textarea" />
+  <i-input value="{{ recoStatus }}" title="审核状态" disabled/>
+</i-modal>
+
+<!-- 已审核的详情对话框 只能看 -->
+<i-modal title="详情" wx:if="{{ detailModalAfter }}" visible="{{ detailModalAfter }}" actions="{{ actionsDetailAfter }}" bind:click="handleDetailClickAfter">
+  <i-input value="{{ recoCourse }}" title="课程名称" disabled/>
+  <i-input value="{{ recoSubmitterName }}" title="你的姓名" disabled/>
+  <i-input value="{{ recoHours }}" title="工作时长" disabled/>
+  <i-input value="{{ recoDate }}" title="工作日期" disabled/>
+  <view class='view'>工作描述</view>
+  <i-input value="{{ recoDesc }}" i-class="input-textarea" disabled/>
+  <i-input value="{{ recoStatus }}" title="审核状态" disabled/>
+</i-modal>
+
+<!-- 返回消息 -->
+<i-message id="message" />

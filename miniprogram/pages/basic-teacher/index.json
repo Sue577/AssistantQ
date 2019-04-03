@@ -1,0 +1,16 @@
+{
+  "navigationBarTitleText": "基础信息",
+  "usingComponents": {
+    "i-input": "../../dist/input/index",
+    "i-modal": "../../dist/modal/index",
+    "i-cell": "../../dist/cell/index",
+    "i-cell-group": "../../dist/cell-group/index",
+    "i-button": "../../dist/button/index",
+    "i-row": "../../dist/row/index",
+    "i-col": "../../dist/col/index",
+    "i-icon": "../../dist/icon/index",
+    "i-panel": "../../dist/panel/index",
+    "i-card": "../../dist/card/index",
+    "i-message": "../../dist/message/index"
+  }
+}

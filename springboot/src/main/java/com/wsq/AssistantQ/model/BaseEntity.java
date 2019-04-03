@@ -11,7 +11,7 @@ import java.util.Date;
  * @date 2019/3/26 12:37
  * 基础类
  * 编号 objectId
- * 创建时间 creatTime
+ * 创建时间 createTime
  * 修改时间 updateTime
  * 删除时间 delTime
  */
@@ -22,13 +22,13 @@ public class BaseEntity {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
     private String objectId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Temporal(TemporalType.TIMESTAMP)
     private Date delTime;
 
@@ -40,12 +40,12 @@ public class BaseEntity {
         this.objectId = objectId;
     }
 
-    public Date getCreatTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreatTime(Date creatTime) {
-        this.createTime = creatTime;
+    public void setCreateTime(Date creatTime) {
+        this.createTime = createTime;
     }
 
     public Date getUpdateTime() {

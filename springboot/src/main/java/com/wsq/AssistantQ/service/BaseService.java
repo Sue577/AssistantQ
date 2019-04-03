@@ -24,7 +24,7 @@ public class BaseService {
     //增
     public void add(JpaRepository repository, BaseEntity baseEntity) {
         Timestamp time = new Timestamp(new Date().getTime());
-        baseEntity.setCreatTime(time);
+        baseEntity.setCreateTime(time);
         repository.save(baseEntity);
     }
 

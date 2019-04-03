@@ -1,0 +1,86 @@
+<!-- tab切换 -->
+<i-tabs current="{{ current }}" bindchange="handleChange">
+  <i-tab key="before" title="未审核" count="4"></i-tab>
+  <i-tab key="after" title="已审核"></i-tab>
+</i-tabs>
+
+<!-- 未审核列表 -->
+<i-cell-group wx:if="{{ before }}">
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件工程-吴苏琪" label="06-28 13:00（3小时）" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="task" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="数据结构-吴苏琪" label="06-28 13:00（3小时）" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="task" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件需求-吴苏琪" label="06-28 13:00（3小时）" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="task" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件测试-吴苏琪" label="06-28 13:00（3小时）" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="task" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 已审核列表 -->
+<i-cell-group wx:if="{{ after }}">
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件工程-吴苏琪" label="06-28 13:00（3小时）" value="已通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="task_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="数据结构-吴苏琪" label="06-28 13:00（3小时）" value="未通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="task_fill" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件需求-吴苏琪" label="06-28 13:00（3小时）" value="已通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="task_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件测试-吴苏琪" label="06-28 13:00（3小时）" value="已通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="task_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+</i-cell-group>
+
+
+<!-- 页脚 -->
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="/pages/login/index" open-type="redirect" class="weui-footer__link">{{link}}</navigator>
+  </view>
+  <view class="weui-footer__text">{{copyright}}</view>
+</view>
+
+<!-- 未审核的详情对话框 可进行审核 -->
+<i-modal title="详情" wx:if="{{ detailModalBefore }}" visible="{{ detailModalBefore }}" actions="{{ actionsDetailBefore }}" bind:click="handleDetailClickBefore">
+  <i-input value="{{ recoHours }}" title="工作时长" disabled/>
+  <i-input value="{{ recoDate }}" title="工作日期" disabled/>
+  <view class='view'>工作描述</view>
+  <i-input value="{{ recoDesc }}" disabled i-class="input-textarea" />
+    <i-panel title="审核状态">
+    <i-radio-group current="{{recoStatus}}" bindchange="handleRecoStatusChange">
+      <i-radio wx:for="{{recoStatusItem}}" position="{{position}}" wx:key="{{item.id}}" value="{{item.name}}">
+      </i-radio>
+    </i-radio-group>
+  </i-panel>
+</i-modal>
+
+<!-- 已审核的详情对话框 只能看 -->
+<i-modal title="详情" wx:if="{{ detailModalAfter }}" visible="{{ detailModalAfter }}" actions="{{ actionsDetailAfter }}" bind:click="handleDetailClickAfter">
+  <i-input value="{{ recoHours }}" title="工作时长" disabled/>
+  <i-input value="{{ recoDate }}" title="工作日期" disabled/>
+  <view class='view'>工作描述</view>
+  <i-input value="{{ recoDesc }}" disabled i-class="input-textarea" />
+  <i-input value="{{ recoStatus }}" title="审核状态" disabled/>
+</i-modal>
+
+<!-- 返回消息 -->
+<i-message id="message" />

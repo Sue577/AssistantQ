@@ -1,0 +1,291 @@
+@import 'weui.wxss';
+
+.i-sticky-demo,page{
+    width:100%;
+    height:100%;
+}
+.i-sticky-demo-item{
+    padding:10px;
+    border-bottom:#ddd solid 1rpx;
+    font-size:14px;
+}
+.i-sticky-demo-des{
+    padding:0 15px;
+    margin-bottom:10px;
+    font-size:12px;
+    color:#ff9900;
+}
+
+.row-class {
+  background: #fff;
+  margin-bottom: 6px;
+}
+
+.col-class {
+  padding: 5px 0;
+  color: #1c2438;
+  background: #fff;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* 空白符 换行符 自动换行 都保留 */
+  white-space: pre-wrap;
+}
+
+.col-class.light {
+  background: #5cadff;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+}
+
+.col-class.title {
+  text-align: center;
+  font-size: 16px;
+}
+
+.col-class.sub {
+  text-align: center;
+  color: #80848f;
+}
+
+.col-class.sub2 {
+  text-align: right;
+  color: #80848f;
+}
+
+.col-class.content {
+  color: #495060;
+}
+
+.input-textarea {
+  margin: 10px;
+  padding: 5px;
+  height: 150px;
+  white-space: pre-wrap;
+  text-align: left;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: #5cadff;
+}
+.input-picker{
+  margin: 10px;
+  padding: 5px;
+  height: 20px;
+  text-align: center;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: #5cadff;
+}
+
+.view {
+  text-align: left;
+  padding-left: 20px;
+  color: #495060;
+}
+
+
+.add-icon{
+  position: fixed;
+  width: 45px;
+  height: 45px;
+  bottom: 30px;
+  right: 30px;
+  background: #2d8cf0;
+  border-radius: 50%;
+}
+
+
+.card-demo image {
+  border-radius: 50%;
+}
+
+
+page{
+    background-color: #F8F8F8;
+    font-size: 16px;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+}
+.page__hd {
+    padding: 40px;
+}
+.page__bd {
+    padding-bottom: 40px;
+}
+.page__bd_spacing {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.page__ft{
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.page__title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.page__desc {
+    margin-top: 5px;
+    color: #888888;
+    text-align: left;
+    font-size: 14px;
+}
+
+.weui-footer{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.weui-footer_fixed-bottom{
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 15px;
+}
+
+page{  
+  height: 100%;  
+}  
+  
+.container {  
+  height: 100%;  
+  display: flex;  
+  flex-direction: column;  
+  padding: 0;  
+  box-sizing: border-box;    
+}   
+  
+/*登录图片*/  
+.login-icon{  
+  flex: none;  
+}  
+.login-img{  
+  width: 750rpx;
+  height: 750rpx;  
+}  
+  
+/*表单内容*/  
+.form {  
+  margin-top: 1px;  
+  flex: auto;  
+  height:100%;  
+}  
+
+/*输入框*/
+.inputView {  
+  background-color: #fff;  
+  line-height: 44px; 
+}  
+  
+.inputImage {  
+  margin-left: 22px; 
+  width: 24px;  
+  height: 24px;  
+}  
+  
+.inputLab {  
+  margin: 10px 10px 10px 10px;  
+  color: #545454;  
+  font-size: 14px;  
+}  
+.inputText {  
+  flex: block;  
+  float: right;  
+  text-align: right;  
+  margin-right: 22px;  
+  margin-top: 10px;  
+  color: #545454;  
+  font-size: 14px;  
+}  
+  
+.line {  
+  width: 100%;  
+  height: 1px;  
+  background-color: #cccccc;  
+  margin-top: 1px;  
+}  
+
+/*按钮*/  
+.btnView {  
+  width: 100%;  
+  height: auto;   
+  margin-top: 0px;  
+  margin-bottom: 0px;  
+  padding-bottom: 0px;  
+}  
+  
+.btnSubmit{  
+  width: 80%;  
+  margin-top: 15px; 
+  background-color: #4169E1; 
+  color: #fff;
+  opacity:0.8; 
+}
+ 
+
+.txt-area {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+}
+.txt-forgetpwd {
+  color: #545454;
+}
+.txt-register {
+  color: #f90;
+}
+.txt-register:active {
+  opacity: 0.7;
+}
+
+/* 修改btn背景颜色和字体颜色 */
+.weui-btn{  
+  background-color: #4169E1; 
+  color: #fff;
+  opacity:0.8; 
+}
+
+/* 侧边栏 */
+.page-bottom{
+  height: 100%;
+  width: 750rpx;
+  position: fixed; 
+  background-color: #4169E1;
+  color: #fff;
+  opacity:0.8; 
+  z-index: 0;
+}
+.wc{
+  color: white;
+  padding: 30rpx 0 30rpx 40rpx;
+}
+.page-content{
+  padding-top: 10rpx;
+}
+.page-top{
+  height: auto;
+  position: absolute; 
+  width: 750rpx;
+  background-color: #f8f8f8;
+  z-index: 1;
+  transition: All 0.4s ease; 
+  -webkit-transition: All 0.4s ease;
+}
+/* .page-top image{
+  position: relative;
+  width: 68rpx;
+  height: 40rpx;
+  left: 20rpx;
+  top: 20rpx;
+} */
+.c-state1{
+  transform: rotate(0deg) scale(1) translate(75%,0%); 
+  -webkit-transform: rotate(0deg) scale(1) translate(75%,0%); 
+}
+.c-state2{
+  transform: rotate(0deg) scale(.8) translate(75%,0%); 
+  -webkit-transform: rotate(0deg) scale(.8) translate(75%,0%); 
+}

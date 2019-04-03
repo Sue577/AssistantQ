@@ -1,0 +1,56 @@
+<!-- 助教信息列表 -->
+<view class="weui-cells__title">注：教师可以点击助教卡片修改工作职责</view>
+<i-cell-group>
+  <view class="weui-cells__title"></view>
+  <i-card title="吴苏琪" extra="31501284" thumb="../../images/avatar.png" bindtap="handleOpenDetail">
+    <view slot="content">所属班级：软工1501</view>
+    <view slot="content">手机号码：15858272997</view>
+    <view slot="content">工作职责：负责批改作业，课堂答疑</view>
+  </i-card>
+
+  <view class="weui-cells__title"></view>
+  <i-card title="薛贝贝" extra="31501284" thumb="../../images/avatar.png" bindtap="handleOpenDetail">
+    <view slot="content">所属班级：软工1501</view>
+    <view slot="content">手机号码：15858272997</view>
+    <view slot="content">工作职责：负责批改作业，课堂答疑</view>
+  </i-card>
+
+  <view class="weui-cells__title"></view>
+  <i-card title="金子舒" extra="31501284" thumb="../../images/avatar.png" bindtap="handleOpenDetail">
+    <view slot="content">所属班级：软工1501</view>
+    <view slot="content">手机号码：15858272997</view>
+    <view slot="content">工作职责：负责批改作业，课堂答疑</view>
+  </i-card>
+
+  <view class="weui-cells__title"></view>
+  <i-card title="苏苏" extra="31501284" thumb="../../images/avatar.png" bindtap="handleOpenDetail">
+    <view slot="content">所属班级：软工1501</view>
+    <view slot="content">手机号码：15858272997</view>
+    <view slot="content">工作职责：负责批改作业，课堂答疑</view>
+  </i-card>
+
+  <view class="weui-cells__title"></view>
+  <i-card title="七七" extra="31501284" thumb="../../images/avatar.png" bindtap="handleOpenDetail">
+    <view slot="content">所属班级：软工1501</view>
+    <view slot="content">手机号码：15858272997</view>
+    <view slot="content">工作职责：负责批改作业，课堂答疑</view>
+  </i-card>
+</i-cell-group>
+
+<!-- 页脚 -->
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="/pages/login/index" open-type="redirect" class="weui-footer__link">{{link}}</navigator>
+  </view>
+  <view class="weui-footer__text">{{copyright}}</view>
+</view>
+
+<!-- 详情对话框 可进行修改 -->
+<i-modal title="详情" wx:if="{{ detailModal }}" visible="{{ detailModal }}" actions="{{ actionsDetail }}" bind:click="handleDetailClick">
+  <i-input value="{{ assiName }}" title="助教姓名" disabled/>
+  <view class='view'>工作职责</view>
+  <i-input value="{{ assiWork }}" type="textarea" maxlength="100" autofocus placeholder="请输入工作职责(100字以内)" bind:change="assiWorkInput" i-class="input-textarea" />
+</i-modal>
+
+<!-- 返回消息 -->
+<i-message id="message" />

@@ -1,0 +1,16 @@
+<!-- 登录图像 -->
+<view class="login-icon">
+  <image class="login-img" src="../../images/login1.jpg"></image>
+</view>
+<!-- 登录信息 -->
+<i-panel>
+  <i-input value="{{ userId }}" type="text" maxlength='20' title="用户ID" autofocus placeholder="请输入学号或者工号" bind:change="userIdInput" />
+  <i-input value="{{ userPwd }}" type="password" maxlength='20' title="用户密码" placeholder="请输入密码" bind:change="userPwdInput" />
+  <i-button bind:click="login" type="primary" >登录</i-button>
+</i-panel>
+<!-- 页脚 -->
+<view class="weui-footer">
+  <view class="weui-footer__text">{{copyright}}</view>
+</view>
+<!-- 提示框 -->
+<i-toast id="toast" />

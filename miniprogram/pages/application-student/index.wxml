@@ -1,0 +1,80 @@
+<!-- tab切换 -->
+<i-tabs current="{{ current }}" bindchange="handleChange">
+    <i-tab key="before" title="未审核" count="4"></i-tab>
+    <i-tab key="after" title="已审核"></i-tab>
+</i-tabs>
+
+<!-- 未审核列表 -->
+<i-cell-group wx:if="{{ before }}">
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件工程" label="06-28 13:00" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="barrage" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="数据结构" label="06-28 13:00" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="barrage" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件需求" label="06-28 13:00" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="barrage" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件测试" label="06-28 13:00" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="barrage" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 已审核列表 -->
+<i-cell-group wx:if="{{ after }}">
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件工程" label="06-28 13:00" value="通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="barrage_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="数据结构" label="06-28 13:00" value="未通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="barrage_fill" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件需求" label="06-28 13:00" value="通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="barrage_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件测试" label="06-28 13:00" value="通过" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="barrage_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 页脚 -->
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="/pages/login/index" open-type="redirect" class="weui-footer__link">{{link}}</navigator>
+  </view>
+  <view class="weui-footer__text">{{copyright}}</view>
+</view>
+
+<!-- 未审核的详情对话框 可进行修改 -->
+<i-modal title="详情" wx:if="{{ detailModalBefore }}" visible="{{ detailModalBefore }}" actions="{{ actionsDetailBefore }}" bind:click="handleDetailClickBefore">
+  <i-input value="{{ applCourse }}" title="报名课程" disabled/>
+  <i-input value="{{ applSubmitterName }}" title="学生姓名" disabled/>
+  <view class='view'>报名简历</view>
+  <i-input value="{{ applDesc }}" type="textarea" maxlength="200" autofocus placeholder="请输入报名简历(200字以内)" bind:change="applDescInput" i-class="input-textarea" />
+  <i-input value="{{ applStatus }}" title="审核状态" disabled/>
+</i-modal>
+
+<!-- 已审核的详情对话框 只能看 -->
+<i-modal title="详情" wx:if="{{ detailModalAfter }}" visible="{{ detailModalAfter }}" actions="{{ actionsDetailAfter }}" bind:click="handleDetailClickAfter">
+  <i-input value="{{ applCourse }}" title="报名课程" disabled/>
+  <i-input value="{{ applSubmitterName }}" title="学生姓名" disabled/>
+  <view class='view'>报名简历</view>
+  <i-input value="{{ applDesc }}" disabled i-class="input-textarea" />
+  <i-input value="{{ applStatus2 }}" title="审核状态" disabled/>
+</i-modal>
+
+<!-- 返回消息 -->
+<i-message id="message" />

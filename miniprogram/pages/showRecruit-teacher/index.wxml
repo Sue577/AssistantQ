@@ -1,0 +1,30 @@
+<!-- 招聘标题 -->
+<i-row i-class="row-class">
+  <i-col span="24" i-class="col-class title">【计算学院记者站纳新】光影的后裔在这里等你</i-col>
+</i-row>
+
+<!-- 招聘截止时间 相关课程 -->
+<i-row i-class="row-class">
+  <i-col span="12" i-class="col-class sub">截止时间 : 2019-06-28</i-col>
+  <i-col span="12" i-class="col-class sub">相关课程 : 软件工程</i-col>
+</i-row>
+
+<!-- 招聘描述 -->
+<i-row i-class="row-class">
+  <i-col span="24" i-class="col-class content"> 由于教学班级容量较大，现《操作系统原理实验》需要招聘助教。要求如下：\n 1、计算机专业大四学生；\n 2、熟悉linux操作系统；\n 3、编程能力较高，熟悉gcc编译器；\n 4、周一上午1、2节，周五上午和下午有自由支配的时间；\n 5、工作认真负责。\n 联系人：七七七 qiqq@zucc.edu.cn\n
+  </i-col>
+</i-row>
+
+<!-- 提交者姓名 招聘创建时间 -->
+<i-row i-class="row-class">
+  <i-col span="24" i-class="col-class sub2">提交者 ： 七七七</i-col>
+  <i-col span="24" i-class="col-class sub2">2019-06-28 12:00:22</i-col>
+</i-row>
+
+<!-- 页脚 -->
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="/pages/login/index" open-type="redirect" class="weui-footer__link">{{link}}</navigator>
+  </view>
+  <view class="weui-footer__text">{{copyright}}</view>
+</view>

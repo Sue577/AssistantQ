@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/course-teacher/index",
+
+    "pages/login/index",
+    "pages/application-student/index",
+    "pages/application-teacher/index",
+    "pages/basic-student/index",
+    "pages/basic-teacher/index",
+    
+    "pages/evaluation-student/index",
+    "pages/evaluation-teacher/index",
+    "pages/home-teacher/index",
+    "pages/home-student/index",
+    "pages/message-student/index",
+    "pages/message-teacher/index",
+    "pages/record-student/index",
+    "pages/record-teacher/index",
+    "pages/recruit-teacher/index",
+    "pages/showRecruit-student/index",
+    "pages/showRecruit-teacher/index",
+    "pages/assistant-teacher/index",
+    "pages/assistant-student/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "AssistantQ",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "i-input": "../../dist/input/index",
+    "i-modal": "../../dist/modal/index",
+    "i-cell": "../../dist/cell/index",
+    "i-cell-group": "../../dist/cell-group/index",
+    "i-button": "../../dist/button/index",
+    "i-row": "../../dist/row/index",
+    "i-col": "../../dist/col/index",
+    "i-icon": "../../dist/icon/index",
+    "i-panel": "../../dist/panel/index",
+    "i-card": "../../dist/card/index",
+    "i-message": "../../dist/message/index",
+    "i-tabs": "../../dist/tabs/index",
+    "i-tab": "../../dist/tab/index",
+    "i-toast": "../../dist/toast/index",
+    "i-tab-bar": "../../dist/tab-bar/index",
+    "i-tab-bar-item": "../../dist/tab-bar-item/index",
+    "i-switch": "../../dist/switch/index",
+    "i-radio-group": "../../dist/radio-group/index",
+    "i-radio": "../../dist/radio/index",
+    "i-rate": "../../dist/rate/index",
+    "i-sticky": "../../dist/sticky/index",
+    "i-sticky-item": "../../dist/sticky-item/index"
+  }
+}

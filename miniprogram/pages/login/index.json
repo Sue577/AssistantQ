@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "登录",
+  "component": true,
+  "usingComponents": {
+    "i-toast": "../../dist/toast/index",
+    "i-input": "../../dist/input/index",
+    "i-button": "../../dist/button/index",
+    "i-panel": "../../dist/panel/index"
+  }
+}

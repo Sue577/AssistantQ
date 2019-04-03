@@ -1,0 +1,9 @@
+.add-icon{
+  position: fixed;
+  width: 45px;
+  height: 45px;
+  bottom: 75px;
+  right: 30px;
+  background: #2d8cf0;
+  border-radius: 50%;
+}

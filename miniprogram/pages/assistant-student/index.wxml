@@ -1,0 +1,31 @@
+<!-- 助教信息列表 -->
+<i-cell-group>
+  <view class="weui-cells__title"></view>
+  <i-card title="吴苏琪" extra="31501284" thumb="../../images/avatar.png">
+    <view slot="content">所属班级：软工1501</view>
+    <view slot="content">手机号码：15858272997</view>
+    <view slot="content">工作职责：负责批改作业，课堂答疑</view>
+  </i-card>
+
+  <view class="weui-cells__title"></view>
+  <i-card title="薛小贝" extra="31501284" thumb="../../images/avatar.png">
+    <view slot="content">所属班级：软工1501</view>
+    <view slot="content">手机号码：15858272997</view>
+    <view slot="content">工作职责：负责批改作业，课堂答疑</view>
+  </i-card>
+
+  <view class="weui-cells__title"></view>
+  <i-card title="金童子" extra="31501284" thumb="../../images/avatar.png">
+    <view slot="content">所属班级：软工1501</view>
+    <view slot="content">手机号码：15858272997</view>
+    <view slot="content">工作职责：负责批改作业，课堂答疑</view>
+  </i-card>
+</i-cell-group>
+
+<!-- 页脚 -->
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="/pages/login/index" open-type="redirect" class="weui-footer__link">{{link}}</navigator>
+  </view>
+  <view class="weui-footer__text">{{copyright}}</view>
+</view>

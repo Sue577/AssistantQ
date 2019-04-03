@@ -1,0 +1,87 @@
+<!-- tab切换 -->
+<i-tabs current="{{ current }}" bindchange="handleChange">
+  <i-tab key="before" title="未审核" count="4"></i-tab>
+  <i-tab key="after" title="已审核"></i-tab>
+</i-tabs>
+
+<!-- 未审核列表 -->
+<i-cell-group wx:if="{{ before }}">
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件工程-吴苏琪" label="06-28 13:00" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="praise" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="数据结构-吴苏琪" label="06-28 13:00" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="praise" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件需求-吴苏琪" label="06-28 13:00" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="praise" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件测试-吴苏琪" label="06-28 13:00" value="待审核" is-link bind:click="handleOpenDetailBefore">
+    <i-icon type="praise" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 已审核列表 -->
+<i-cell-group wx:if="{{ after }}">
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件工程-吴苏琪" label="06-28 13:00" value="优秀" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="praise_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="数据结构-吴苏琪" label="06-28 13:00" value="良好" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="praise_fill" slot="icon" size="28" color="#DAA569" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件测试-吴苏琪" label="06-28 13:00" value="合格" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="praise_fill" slot="icon" size="28" color="#DA70D6" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件需求-吴苏琪" label="06-28 13:00" value="不合格" is-link bind:click="handleOpenDetailAfter">
+    <i-icon type="praise_fill" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+
+</i-cell-group>
+
+<!-- 页脚 -->
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="/pages/login/index" open-type="redirect" class="weui-footer__link">{{link}}</navigator>
+  </view>
+  <view class="weui-footer__text">{{copyright}}</view>
+</view>
+
+<!-- 未审核的详情对话框 可进行审核 -->
+<i-modal title="详情" wx:if="{{ detailModalBefore }}" visible="{{ detailModalBefore }}" actions="{{ actionsDetailBefore }}" bind:click="handleDetailClickBefore">
+  <i-input value="{{ evalCourse }}" title="课程名称" disabled/>
+  <i-input value="{{ evalSubmitterName }}" title="学生姓名" disabled/>
+  <i-input value="{{ evalTerm }}" title="考核学期" disabled/>
+  <view class='view'>工作描述</view>
+  <i-input value="{{ evalDesc }}" i-class="input-textarea" disabled/>
+  <i-cell title="考核等级">
+    <i-rate count="{{4}}" size="32" bind:change="onChangeEvalLevel" value="{{starIndex}}">
+      {{evalLevel}}
+    </i-rate>
+  </i-cell>
+</i-modal>
+
+<!-- 已审核的详情对话框 只能看 -->
+<i-modal title="详情" wx:if="{{ detailModalAfter }}" visible="{{ detailModalAfter }}" actions="{{ actionsDetailAfter }}" bind:click="handleDetailClickAfter">
+  <i-input value="{{ evalCourse }}" title="课程名称" disabled/>
+  <i-input value="{{ evalSubmitterName }}" title="学生姓名" disabled/>
+  <i-input value="{{ evalTerm }}" title="考核学期" disabled/>
+  <view class='view'>工作描述</view>
+  <i-input value="{{ evalDesc }}" i-class="input-textarea" disabled/>
+  <i-input value="{{ evalLevel }}" title="考核等级" disabled/>
+</i-modal>
+
+<!-- 返回消息 -->
+<i-message id="message" />

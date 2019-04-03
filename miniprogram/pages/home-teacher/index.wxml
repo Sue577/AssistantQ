@@ -1,0 +1,117 @@
+<!-- 假数据 招聘动态 -->
+<i-cell-group wx:if="{{ recruit }}">
+  <view class="weui-cells__title"></view>
+  <i-cell title="xxxx开始招人啦啦啦啦" label="06-18 12:00" value="招聘详情" is-link url="/pages/showRecruit-teacher/index">
+    <i-icon type="collection" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+  <view class="weui-cells__title"></view>
+  <i-cell title="xxxx开始招人啦啦啦啦" label="06-18 12:00" value="招聘详情" is-link url="/pages/showRecruit-teacher/index">
+    <i-icon type="collection" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+  <view class="weui-cells__title"></view>
+  <i-cell title="xxxx开始招人啦啦啦啦" label="06-18 12:00" value="招聘详情" is-link url="/pages/showRecruit-teacher/index">
+    <i-icon type="collection" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+  <view class="weui-cells__title"></view>
+  <i-cell title="xxxx开始招人啦啦啦啦" label="06-18 12:00" value="招聘详情" is-link url="/pages/showRecruit-teacher/index">
+    <i-icon type="collection" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 新增招聘按钮 -->
+<view wx:if="{{ recruit }}" class='add-icon' bindtap="handleOpenAddRecruit">
+  <i-icon type="add" slot="icon" size="45" color="white" />
+</view>
+
+<!-- 招聘动态 -->
+<i-cell-group wx:if="{{ recruit }}" wx:for="{{findAllRecruit}}" wx:key="id">
+  <view class="weui-cells__title">{{item.id}}</view>
+  <i-cell title="{{item.recrTitle}}" label="{{item.createTime}}" value="详细信息" is-link>
+    <i-icon type="collection" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 助教信息 -->
+<i-cell-group wx:if="{{ assistant }}">
+  <view class="weui-cells__title">我的课程1</view>
+  <i-cell title="软件工程" label="" value="相关助教" is-link url="/pages/assistant-teacher/index">
+    <i-icon type="emoji" slot="icon" size="28" color="#DAA569" />
+  </i-cell>
+  <view class="weui-cells__title">我的课程2</view>
+  <i-cell title="数据结构" label="" value="相关助教" is-link url="/pages/assistant-teacher/index">
+    <i-icon type="emoji" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+  <view class="weui-cells__title">我的课程3</view>
+  <i-cell title="软件需求" label="" value="相关助教" is-link url="/pages/assistant-teacher/index">
+    <i-icon type="emoji" slot="icon" size="28" color="#DAA569" />
+  </i-cell>
+  <view class="weui-cells__title">我的课程4</view>
+  <i-cell title="软件测试" label="" value="相关助教" is-link url="/pages/assistant-teacher/index">
+    <i-icon type="emoji" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 我的相关 -->
+<i-cell-group wx:if="{{ mine }}">
+  <i-card full title="七七七" extra="J10000" thumb="../../images/avatar.png" i-class="card-demo">
+    <view slot="content">老师您好~欢迎来到AssistantQ助教管理系统</view>
+  </i-card>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="基本信息" label="" value="" is-link url="/pages/basic-teacher/index">
+    <i-icon type="businesscard" slot="icon" size="28" color="#2d8cf0" />
+  </i-cell>
+  <i-cell title="收到通知" label="" value="" is-link url="/pages/message-teacher/index">
+    <i-icon type="message" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="课程管理" label="" value="" is-link url="/pages/course-teacher/index">
+    <i-icon type="flag" slot="icon" size="28" color="#19be6b" />
+  </i-cell>
+  <i-cell title="招聘管理" label="" value="" is-link url="/pages/recruit-teacher/index">
+    <i-icon type="activity" slot="icon" size="28" color="#A066D3"/>
+  </i-cell>
+  <i-cell title="报名审核" label="" value="" is-link url="/pages/application-teacher/index">
+    <i-icon type="barrage" slot="icon" size="28" color="#DAA569" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="记录审核" label="" value="" is-link url="/pages/record-teacher/index">
+    <i-icon type="task" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+  <i-cell title="考核审核" label="" value="" is-link url="/pages/evaluation-teacher/index">
+    <i-icon type="praise" slot="icon" size="28" color="#2d8cf0" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 底部导航栏 -->
+<i-tab-bar fixed="true" current="{{ current }}" bindchange="handleChange" color="#f759ab">
+  <i-tab-bar-item key="recruit" icon="activity" current-icon="activity_fill" title="招聘动态"></i-tab-bar-item>
+  <i-tab-bar-item key="assistant" icon="group" current-icon="group_fill" title="助教信息"></i-tab-bar-item>
+  <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的相关"></i-tab-bar-item>
+</i-tab-bar>
+
+<!-- 页脚 -->
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="/pages/login/index" open-type="redirect" class="weui-footer__link">{{link}}</navigator>
+  </view>
+  <view class="weui-footer__text">{{copyright}}</view>
+</view>
+
+<!-- 新增招聘对话框 -->
+<i-modal title="新增招聘信息" wx:if="{{ addRecruitModal }}" visible="{{ addRecruitModal }}" bind:ok="handleOkAddRecruit" bind:cancel="handleCancelAddRecruit">
+  <i-input value="{{ recrTitle }}" maxlength="20" title="招聘标题" autofocus placeholder="请输入招聘标题" bind:change="recrTitleInput" />
+  <i-input value="{{ recrCourse }}" maxlength="20" title="相关课程" autofocus placeholder="请输入课程名称" bind:change="recrCourseInput" />
+  <i-input value="{{ recrSubmitterName }}" maxlength="20" title="你的姓名" autofocus placeholder="请输入你的姓名" bind:change="recrSubmitterNameInput" />
+  <view class='view'>截止时间</view>
+  <picker mode="date" value="{{recrDeadLine}}" start="2018-09-01" end="2040-09-01" bindchange="recrDeadLineInput">
+    <view class="weui-input"  class="input-picker">2019-06-28</view>
+  </picker>
+  <view class='view'>招聘描述</view>
+  <i-input value="{{ recrDesc }}" type="textarea" maxlength="800" autofocus placeholder="请输入招聘信息描述(800字以内)" bind:change="recrDescInput" i-class="input-textarea" />
+</i-modal>
+
+<!-- 提示框 -->
+<i-toast id="toast" />

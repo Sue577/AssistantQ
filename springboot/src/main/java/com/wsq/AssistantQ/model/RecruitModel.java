@@ -26,7 +26,7 @@ public class RecruitModel extends BaseEntity {
     private String recrTitle;
     @Column(nullable = false, length = 32)
     private String recrCourse;
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, length = 1024)
     private String recrDesc;
     @Column(nullable = false, length = 32)
     private String recrSubmitterName;

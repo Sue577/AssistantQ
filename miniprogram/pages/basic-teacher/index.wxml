@@ -1,0 +1,53 @@
+<!-- 头像 姓名 学号 是否为助教 -->
+<i-card full title="七七七" extra="J10000" thumb="../../images/avatar.png" i-class="card-demo">
+  <view slot="content">老师您好~欢迎来到AssistantQ助教管理系统</view>
+</i-card>
+
+<!-- 学生信息 -->
+<view class="weui-cells__title"></view>
+<i-cell title="教师职称" label="" value="教授">
+  <i-icon type="businesscard" slot="icon" size="28" color="#2d8cf0" />
+</i-cell>
+<i-cell title="所属分院" label="" value="计算机与计算科学学院">
+  <i-icon type="computer" slot="icon" size="28" color="#f759ab" />
+</i-cell>
+<i-cell title="所属学院" label="" value="浙江大学城市学院">
+  <i-icon type="homepage" slot="icon" size="28" color="#DAA569" />
+</i-cell>
+
+<!-- 用户信息 -->
+<view class="weui-cells__title"></view>
+<i-cell title="用户邮箱" label="" value="807759022@qq.com" is-link bind:click="handleOpenEmail">
+  <i-icon type="eit" slot="icon" size="28" color="#A066D3" />
+</i-cell>
+<i-cell title="用户手机号" label="" value="15858272997" is-link bind:click="handleOpenPhone">
+  <i-icon type="mobilephone" slot="icon" size="28" color="#5cadff" />
+</i-cell>
+<i-cell title="修改密码" label="" value="" is-link bind:click="handleOpenPwd">
+  <i-icon type="editor" slot="icon" size="28" color="#ED9121" />
+</i-cell>
+
+<!-- 页脚 -->
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="/pages/login/index" open-type="redirect" class="weui-footer__link">{{link}}</navigator>
+  </view>
+  <view class="weui-footer__text">{{copyright}}</view>
+</view>
+
+<!-- 修改邮箱对话框 -->
+<i-modal title="修改邮箱" wx:if="{{ modifyEmailModal }}" visible="{{ modifyEmailModal }}" bind:ok="handleOkEmail" bind:cancel="handleCancelEmail">
+  <i-input value="{{ userEmail }}" title="邮箱" maxlength="30" autofocus placeholder="请输入你的邮箱" bind:change="userEmailInput" />
+</i-modal>
+
+<!-- 修改手机号对话框 -->
+<i-modal title="修改手机号" wx:if="{{ modifyPhoneModal }}" visible="{{ modifyPhoneModal }}" bind:ok="handleOkPhone" bind:cancel="handleCancelPhone">
+  <i-input value="{{ userPhone }}" type='number' title="手机号" maxlength="20" autofocus placeholder="请输入你的手机号" bind:change="userPhoneInput" />
+</i-modal>
+
+<!-- 修改密码对话框 -->
+<i-modal title="修改密码" wx:if="{{ modifyPwdModal }}" visible="{{ modifyPwdModal }}" bind:ok="handleOkPwd" bind:cancel="handleCancelPwd">
+  <i-input value="{{ userPwd }}" title="原密码" maxlength="20" type="password" autofocus placeholder="请输入你的原密码" bind:change="userPwdInput" />
+  <i-input value="{{ userNewPwd }}" title="新密码" maxlength="20" type="password" placeholder="请输入你的新密码" bind:change="userNewPwdInput" />
+  <i-input value="{{ userConfirmPwd }}" title="确认密码" maxlength="20" type="password" placeholder="请再次确认密码" bind:change="userConfirmPwdInput" />
+</i-modal>

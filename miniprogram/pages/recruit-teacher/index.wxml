@@ -1,0 +1,65 @@
+<!-- 招聘信息列表 -->
+<view class="weui-cells__title">招聘信息列表</view>
+<i-cell-group>
+  <view class="weui-cells__title"></view>
+  <i-cell title="软件工程开始招聘啦啦啦啦啦" label="06-28 13:00" value="招聘详情" is-link bind:click="handleOpenDetail">
+    <i-icon type="activity" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+  <view class="weui-cells__title"></view>
+  <i-cell title="数据结构开始招聘啦啦啦啦啦" label="06-28 13:00" value="招聘详情" is-link bind:click="handleOpenDetail">
+    <i-icon type="activity" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+
+<view class="weui-cells__title"></view>
+  <i-cell title="软件需求开始招聘啦啦啦啦啦" label="06-28 13:00" value="招聘详情" is-link bind:click="handleOpenDetail">
+    <i-icon type="activity" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+
+<view class="weui-cells__title"></view>
+  <i-cell title="软件测试开始招聘啦啦啦啦啦" label="06-28 13:00" value="招聘详情" is-link bind:click="handleOpenDetail">
+    <i-icon type="activity" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 新增按钮 -->
+<view class='add-icon' bindtap="handleOpenAdd">
+  <i-icon type="add" slot="icon" size="45" color="white" />
+</view>
+
+<!-- 页脚 -->
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="/pages/login/index" open-type="redirect" class="weui-footer__link">{{link}}</navigator>
+  </view>
+  <view class="weui-footer__text">{{copyright}}</view>
+</view>
+
+<!-- 新增对话框 -->
+<i-modal title="新增招聘信息" wx:if="{{ addModal }}" visible="{{ addModal }}" bind:ok="handleOkAdd" bind:cancel="handleCancelAdd">
+  <i-input value="{{ recrTitle }}" maxlength="20" title="招聘标题" autofocus placeholder="请输入招聘标题" bind:change="recrTitleInput" />
+  <i-input value="{{ recrCourse }}" maxlength="20" title="相关课程" autofocus placeholder="请输入课程名称" bind:change="recrCourseInput" />
+  <i-input value="{{ recrSubmitterName }}" maxlength="20" title="你的姓名" autofocus placeholder="请输入你的姓名" bind:change="recrSubmitterNameInput" />
+  <view class='view'>截止时间</view>
+  <picker mode="date" value="{{recrDeadLine}}" start="2018-09-01" end="2040-09-01" bindchange="recrDeadLineInput">
+    <view class="weui-input"  class="input-picker">2019-06-28</view>
+  </picker>
+  <view class='view'>招聘描述</view>
+  <i-input value="{{ recrDesc }}" type="textarea" maxlength="800" autofocus placeholder="请输入招聘信息描述(800字以内)" bind:change="recrDescInput" i-class="input-textarea" />
+</i-modal>
+
+<!-- 详情对话框 可进行删除和修改 -->
+<i-modal title="招聘详情" wx:if="{{ detailModal }}" visible="{{ detailModal }}" actions="{{ actionsDetail }}" bind:click="handleDetailClick">
+  <i-input value="{{ recrTitle }}" title="招聘标题" disabled/>
+  <i-input value="{{ recrCourse }}" title="相关课程" disabled/>
+  <i-input value="{{ recrSubmitterName }}" title="你的姓名" disabled/>
+  <view class='view'>截止时间</view>
+  <picker mode="date" value="{{recrDeadLine}}" start="2018-09-01" end="2040-09-01" bindchange="recrDeadLineInput">
+    <view class="weui-input"  class="input-picker">2019-06-28</view>
+  </picker>
+  <view class='view'>招聘描述</view>
+  <i-input value="{{ recrDesc }}" type="textarea" maxlength="800" autofocus placeholder="请输入招聘信息描述(800字以内)" bind:change="recrDescInput" i-class="input-textarea" />
+</i-modal>
+
+<!-- 返回消息 -->
+<i-message id="message" />
