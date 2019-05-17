@@ -21,12 +21,12 @@ import javax.persistence.Table;
 @Table(name = "tb_course")
 @Data
 public class CourseModel extends BaseEntity {
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String courName;
-    @Column(nullable = false, length = 255)
+    @Column(nullable = true, length = 255)
     private String courDesc;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String courTeacherName;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String courSubmitterId;
 }

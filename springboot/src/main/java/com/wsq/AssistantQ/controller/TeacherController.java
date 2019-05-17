@@ -69,7 +69,7 @@ public class TeacherController {
     }
 
     //管理员根据教师ID查找教师 返回教师信息
-    @GetMapping(value = "/admin/findByTeachId")
+    @PostMapping(value = "/admin/findByTeachId")
     public Result findByTeachId(@RequestBody TeacherModel teacherModel) {
         TeacherModel teacherResult = teacherService.findByTeachId(teacherModel.getTeachId());
 

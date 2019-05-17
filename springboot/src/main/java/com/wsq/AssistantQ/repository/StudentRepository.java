@@ -21,7 +21,7 @@ public interface StudentRepository extends JpaRepository<StudentModel,String>, J
     List<StudentModel> findAllStudent();
 
     //根据编号查找学生
-    @Query("select studentModel from StudentModel studentModel where studentModel.delTime is null and studentModel.objectId = :objectId")
+    @Query("select studentModel from StudentModel studentModel where studentModel.delTime is null and studentModel.objectId = ?1")
     StudentModel findByObjectId(@Param("objectId") String objectId);
 
     //根据学生ID查找学生

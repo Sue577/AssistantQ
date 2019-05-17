@@ -8,6 +8,13 @@ Page({
     copyright: getApp().globalData.copyright,//底部版权
     link: getApp().globalData.link,//底部链接
 
+    objectId:'',//助教编号
+    assiStudentId:'',//助教ID
+    assiCourse:'',//助教课程
+    assiTeacherId:'',//助教教师ID
+    assiName:'吴苏琪',//助教姓名
+    assiWork:'',//助教工作职责
+
     detailModal: false,
     //详情对话框的操作
     actionsDetail: [

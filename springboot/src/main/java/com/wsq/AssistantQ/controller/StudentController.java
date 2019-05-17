@@ -69,7 +69,7 @@ public class StudentController {
     }
 
     //管理员根据学生ID查找学生 返回学生信息
-    @GetMapping(value = "/admin/findByStuId")
+    @PostMapping(value = "/admin/findByStuId")
     public Result findByStudentId(@RequestBody StudentModel studentModel) {
         StudentModel studentResult = studentService.findByStuId(studentModel.getStuId());
 

@@ -25,20 +25,20 @@ import javax.persistence.Table;
 @Table(name = "tb_record")
 @Data
 public class RecordModel extends BaseEntity {
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String recoDate;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String recoHours;
-    @Column(nullable = false, length = 255)
+    @Column(nullable = true, length = 255)
     private String recoDesc;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String recoCourse;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String recoSubmitterName;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String recoSubmitterId;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String recoAuditorId;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String recoStatus;
 }

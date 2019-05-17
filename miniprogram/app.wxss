@@ -57,6 +57,14 @@
 .col-class.content {
   color: #495060;
 }
+.col-class.content1 {
+  color: #495060;
+  white-space: pre-wrap;
+  text-align: left;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #5cadff;
+}
 
 .input-textarea {
   margin: 10px;
@@ -160,10 +168,13 @@ page{
 /*登录图片*/  
 .login-icon{  
   flex: none;  
+  background: white;
 }  
 .login-img{  
-  width: 750rpx;
-  height: 750rpx;  
+  width: 600rpx;
+  height: 600rpx; 
+  margin: 80rpx;
+  /* border-radius:50%;  */
 }  
   
 /*表单内容*/  

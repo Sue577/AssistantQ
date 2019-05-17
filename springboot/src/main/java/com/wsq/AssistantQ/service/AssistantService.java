@@ -54,8 +54,8 @@ public class AssistantService {
             if(assistantModel.getAssiStudentId() !=null && assistantItem.getAssiStudentId().equals(assistantModel.getAssiStudentId()) == false ){
                 assistantItem.setAssiStudentId(assistantModel.getAssiStudentId());
             }
-            if(assistantModel.getAssiName() !=null && assistantItem.getAssiName().equals(assistantModel.getAssiName()) == false ){
-                assistantItem.setAssiName(assistantModel.getAssiName());
+            if(assistantModel.getAssiStudentName() !=null && assistantItem.getAssiStudentName().equals(assistantModel.getAssiStudentName()) == false ){
+                assistantItem.setAssiStudentName(assistantModel.getAssiStudentName());
             }
             if(assistantModel.getAssiCourse() !=null && assistantItem.getAssiCourse().equals(assistantModel.getAssiCourse()) == false ){
                 assistantItem.setAssiCourse(assistantModel.getAssiCourse());
@@ -89,9 +89,9 @@ public class AssistantService {
         return list;
     }
 
-    //根据助教姓名查找助教信息
-    public List<AssistantModel> findByAssiName(String assiName){
-        List<AssistantModel> list = assistantRepository.findByAssiName(assiName);
+    //根据助教学生姓名查找助教信息
+    public List<AssistantModel> findByAssiName(String assiStuName){
+        List<AssistantModel> list = assistantRepository.findByAssiName(assiStuName);
         return list;
     }
 

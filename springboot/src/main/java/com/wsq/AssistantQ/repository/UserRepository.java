@@ -21,7 +21,7 @@ public interface UserRepository extends JpaRepository<UserModel,String>, JpaSpec
     List<UserModel> findAllUser();
 
     //根据编号查找用户
-    @Query("select userModel from UserModel userModel where userModel.delTime is null and userModel.objectId = :objectId")
+    @Query("select userModel from UserModel userModel where userModel.delTime is null and userModel.objectId = ?1")
     UserModel findByObjectId(@Param("objectId") String objectId);
 
     //根据用户ID查找用户

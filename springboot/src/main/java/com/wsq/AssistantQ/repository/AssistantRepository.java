@@ -21,16 +21,16 @@ public interface AssistantRepository extends JpaRepository<AssistantModel,String
     List<AssistantModel> findAllAssistant();
 
     //根据编号查找助教信息
-    @Query("select assistantModel from AssistantModel assistantModel where assistantModel.delTime is null and assistantModel.objectId = :objectId")
+    @Query("select assistantModel from AssistantModel assistantModel where assistantModel.delTime is null and assistantModel.objectId = ?1")
     AssistantModel findByObjectId(@Param("objectId") String objectId);
 
     //根据助教学生ID查找助教信息
     @Query("select assistantModel from AssistantModel assistantModel where assistantModel.delTime is null and assistantModel.assiStudentId = ?1")
     List<AssistantModel> findByAssiStudentId(@Param("assiStudentId") String assiStudentId);
 
-    //根据助教姓名查找助教信息
-    @Query("select assistantModel from AssistantModel assistantModel where assistantModel.delTime is null and assistantModel.assiName = ?1")
-    List<AssistantModel> findByAssiName(@Param("assiName") String assiName);
+    //根据助教学生姓名查找助教信息
+    @Query("select assistantModel from AssistantModel assistantModel where assistantModel.delTime is null and assistantModel.assiStudentName = ?1")
+    List<AssistantModel> findByAssiName(@Param("assiStudentName") String assiName);
 
     //根据助教课程查找助教信息
     @Query("select assistantModel from AssistantModel assistantModel where assistantModel.delTime is null and assistantModel.assiCourse = ?1")

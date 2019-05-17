@@ -27,7 +27,7 @@ public class LoginAspect {
     public void point(){}
 
     //登录校验
-//    @Before("point()")
+    @Before("point()")
     public void doBefore() {
         // logger.info("before!!!!");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();

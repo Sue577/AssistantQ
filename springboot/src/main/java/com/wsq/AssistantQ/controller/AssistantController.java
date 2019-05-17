@@ -61,16 +61,16 @@ public class AssistantController {
         return Result.success(list);
     }
 
-    //管理员根据助教姓名查找助教 返回助教列表
-    @GetMapping(value = "/admin/findByAssiName")
+    //管理员根据助教学生姓名查找助教 返回助教列表
+    @PostMapping(value = "/admin/findByAssiStuName")
     public Result findByAssiName(@RequestBody AssistantModel assistantModel) {
-        List<AssistantModel> list = assistantService.findByAssiName(assistantModel.getAssiName());
+        List<AssistantModel> list = assistantService.findByAssiName(assistantModel.getAssiStudentName());
 
         return Result.success(list);
     }
 
     //管理员根据助教学生ID查找助教 返回助教列表
-    @GetMapping(value = "/admin/findByAssiStudentId")
+    @PostMapping(value = "/admin/findByAssiStudentId")
     public Result findByAssiStudentId(@RequestBody AssistantModel assistantModel) {
         List<AssistantModel> list = assistantService.findByAssiStudentId(assistantModel.getAssiStudentId());
 
@@ -78,7 +78,7 @@ public class AssistantController {
     }
 
     //管理员根据助教课程查找助教 返回助教列表
-    @GetMapping(value = "/admin/findByAssiCourse")
+    @PostMapping(value = "/admin/findByAssiCourse")
     public Result findByAssiCourse(@RequestBody AssistantModel assistantModel) {
         List<AssistantModel> list = assistantService.findByAssiCourse(assistantModel.getAssiCourse());
 
@@ -86,7 +86,7 @@ public class AssistantController {
     }
 
     //管理员根据助教教师ID查找助教 返回助教列表
-    @GetMapping(value = "/admin/findByAssiTeacherId")
+    @PostMapping(value = "/admin/findByAssiTeacherId")
     public Result findByAssiTeacherId(@RequestBody AssistantModel assistantModel) {
         List<AssistantModel> list = assistantService.findByAssiTeacherId(assistantModel.getAssiTeacherId());
 

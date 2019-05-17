@@ -21,7 +21,7 @@ public interface MessageRepository extends JpaRepository<MessageModel,String>, J
     List<MessageModel> findAllMessage();
 
     //根据编号查找通知信息
-    @Query("select messageModel from MessageModel messageModel where messageModel.delTime is null and messageModel.objectId = :objectId")
+    @Query("select messageModel from MessageModel messageModel where messageModel.delTime is null and messageModel.objectId = ?1")
     MessageModel findByObjectId(@Param("objectId") String objectId);
 
     //根据发送人ID查找通知信息
@@ -31,4 +31,12 @@ public interface MessageRepository extends JpaRepository<MessageModel,String>, J
     //根据接收人ID查找通知信息
     @Query("select messageModel from MessageModel messageModel where messageModel.delTime is null and messageModel.msgReceiverId = ?1")
     List<MessageModel> findByMsgReceiverId(@Param("msgReceiverId") String msgReceiverId);
+
+    //根据状态查看查找通知信息
+    @Query("select messageModel from MessageModel messageModel where messageModel.delTime is null and messageModel.msgStatus = ?1")
+    List<MessageModel> findByMsgStatus(@Param("msgStatus") String msgStatus);
+
+    //根据查看状态和接收人ID查找通知信息
+    @Query("select messageModel from MessageModel messageModel where messageModel.delTime is null and messageModel.msgStatus = ?1 and messageModel.msgReceiverId = ?2")
+    List<MessageModel> findByMsgStatusAndMsgReceiverId(@Param("msgStatus") String msgStatus,@Param("msgReceiverId") String msgReceiverId);
 }

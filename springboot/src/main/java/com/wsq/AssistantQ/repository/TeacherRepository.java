@@ -20,7 +20,7 @@ public interface TeacherRepository extends JpaRepository<TeacherModel, String>, 
     List<TeacherModel> findAllTeacher();
 
     //根据编号查找教师
-    @Query("select teacherModel from TeacherModel teacherModel where teacherModel.delTime is null and teacherModel.objectId = :objectId")
+    @Query("select teacherModel from TeacherModel teacherModel where teacherModel.delTime is null and teacherModel.objectId = ?1")
     TeacherModel findByObjectId(@Param("objectId") String objectId);
 
     //根据教师ID查找教师

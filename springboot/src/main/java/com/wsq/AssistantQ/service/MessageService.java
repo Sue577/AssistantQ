@@ -60,6 +60,9 @@ public class MessageService {
             if(messageModel.getMsgDesc() !=null && messageItem.getMsgDesc().equals(messageModel.getMsgDesc()) == false ){
                 messageItem.setMsgDesc(messageModel.getMsgDesc());
             }
+            if(messageModel.getMsgStatus() !=null && messageItem.getMsgStatus().equals(messageModel.getMsgStatus()) == false ){
+                messageItem.setMsgStatus(messageModel.getMsgStatus());
+            }
             baseService.modify(messageRepository,messageItem);
             messageRepository.save(messageItem);
         }
@@ -86,6 +89,18 @@ public class MessageService {
     //根据接收人ID查找通知信息
     public List<MessageModel> findByMsgReceiverId(String msgReceiverId){
         List<MessageModel> list = messageRepository.findByMsgReceiverId(msgReceiverId);
+        return list;
+    }
+
+    //根据查看状态查找通知信息
+    public List<MessageModel> findByMsgStatus(String msgStatus){
+        List<MessageModel> list = messageRepository.findByMsgStatus(msgStatus);
+        return list;
+    }
+
+    //根据查看状态和接收人ID查找通知信息
+    public List<MessageModel> findByMsgStatusAndMsgReceiverId(String msgStatus,String msgReceiverId){
+        List<MessageModel> list = messageRepository.findByMsgStatusAndMsgReceiverId(msgStatus,msgReceiverId);
         return list;
     }
 }

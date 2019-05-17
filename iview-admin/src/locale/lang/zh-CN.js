@@ -3,7 +3,7 @@ export default {
   login: '登录',
   components: '组件',
   count_to_page: '数字渐变',
-  tables_page: '多功能表格',
+  tables_page: '多功能列表',
   split_pane_page: '分割窗口',
   markdown_page: 'Markdown编辑器',
   editor_page: '富文本编辑器',

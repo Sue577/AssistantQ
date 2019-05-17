@@ -65,7 +65,7 @@ public class ApplicationController {
     }
 
     //管理员根据提交者姓名查找报名 返回报名列表
-    @GetMapping(value = "/admin/findByApplSubmitterName")
+    @PostMapping(value = "/admin/findByApplSubmitterName")
     public Result findByApplSubmitterName(@RequestBody ApplicationModel applicationModel) {
         List<ApplicationModel> list = applicationService.findByApplSubmitterName(applicationModel.getApplSubmitterName());
 
@@ -73,7 +73,7 @@ public class ApplicationController {
     }
 
     //管理员根据报名审核状态查找报名 返回报名列表
-    @GetMapping(value = "/admin/findByApplStatus")
+    @PostMapping(value = "/admin/findByApplStatus")
     public Result findByApplStatus(@RequestBody ApplicationModel applicationModel) {
         List<ApplicationModel> list = applicationService.findByApplStatus(applicationModel.getApplStatus());
 
@@ -125,8 +125,8 @@ public class ApplicationController {
     }
 
     //学生根据招聘编号和提交者ID查询查看自己报名信息 返回自己的报名信息
-    @GetMapping(value = "/student/findByApplRecruitIdAndApplSubmitterId")
-    public Result findByApplRecruitIdAndApplSubmitterId(@RequestBody RecruitModel recruitModel) {
+    @PostMapping(value = "/student/findByApplRecruitIdAndApplSubmitterId")
+    public Result findByApplRecruitIdAndApplSubmitterId(@RequestBody ApplicationModel applicationModel) {
         //获取根据session获取objectId
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
@@ -136,7 +136,7 @@ public class ApplicationController {
         String applSubmitterId=userService.findByObjectId(objectId).getUserId();
 
         //根据招聘编号和提交者ID查询报名信息
-        ApplicationModel applicationResult = applicationService.findByApplRecruitIdAndApplSubmitterId(recruitModel.getRecrSubmitterId(),applSubmitterId);
+        ApplicationModel applicationResult = applicationService.findByApplRecruitIdAndApplSubmitterId(applicationModel.getApplRecruitId(),applSubmitterId);
         return Result.success(applicationResult);
     }
 
@@ -151,7 +151,24 @@ public class ApplicationController {
         //获取提交者ID 等同于用户信息表中获取用户ID
         String applSubmitterId=userService.findByObjectId(objectId).getUserId();
 
+        //根据提交者ID查找报名信息
         List<ApplicationModel> list = applicationService.findByApplSubmitterId(applSubmitterId);
+        return Result.success(list);
+    }
+
+    //学生根据审核状态查看自己的报名信息 返回自己的审核状态报名列表
+    @PostMapping(value = "/student/findMyByStatus")
+    public Result findMyByStatus(@RequestBody ApplicationModel applicationModel) {
+        //获取根据session获取objectId
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        String objectId = (String) request.getSession().getAttribute("ID");
+
+        //获取提交者ID 等同于用户信息表中获取用户ID
+        String applSubmitterId=userService.findByObjectId(objectId).getUserId();
+
+        //根据报名审核状态和提交者ID查询报名信息
+        List<ApplicationModel> list = applicationService.findByApplStatusAndApplSubmitterId(applicationModel.getApplStatus(),applSubmitterId);
         return Result.success(list);
     }
 
@@ -175,7 +192,24 @@ public class ApplicationController {
         //获取审核者ID 等同于用户信息表中获取用户ID
         String applAuditorId=userService.findByObjectId(objectId).getUserId();
 
+        //根据审核者ID查找报名信息
         List<ApplicationModel> list = applicationService.findByApplAuditorId(applAuditorId);
+        return Result.success(list);
+    }
+
+    //教师根据审核状态查看自己需要审核的报名信息 返回自己审核的报名列表
+    @PostMapping(value = "/teacher/findMyAuditByStatus")
+    public Result findMyAuditByStatus(@RequestBody ApplicationModel applicationModel) {
+        //获取根据session获取objectId
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        String objectId = (String) request.getSession().getAttribute("ID");
+
+        //获取审核者ID 等同于用户信息表中获取用户ID
+        String applAuditorId=userService.findByObjectId(objectId).getUserId();
+
+        //根据报名审核状态和审核者ID查询报名信息
+        List<ApplicationModel> list = applicationService.findByApplStatusAndApplAuditorId(applicationModel.getApplStatus(),applAuditorId);
         return Result.success(list);
     }
 }

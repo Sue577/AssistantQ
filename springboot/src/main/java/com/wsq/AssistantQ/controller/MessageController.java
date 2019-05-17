@@ -61,7 +61,7 @@ public class MessageController {
     }
 
     //管理员根据通知接收者ID查找通知 返回通知列表
-    @GetMapping(value = "/admin/findByMsgReceiverId")
+    @PostMapping(value = "/admin/findByMsgReceiverId")
     public Result findByMsgReceiverId(@RequestBody MessageModel messageModel) {
         List<MessageModel> list = messageService.findByMsgReceiverId(messageModel.getMsgReceiverId());
 
@@ -80,6 +80,23 @@ public class MessageController {
         String msgReceiverId = userService.findByObjectId(objectId).getUserId();
 
         List<MessageModel> list = messageService.findByMsgReceiverId(msgReceiverId);
+
+        return Result.success(list);
+    }
+
+    //教师和学生根据查看状态查看自己通知信息 返回自己的通知列表
+    @PostMapping(value = "/findMyByStatus")
+    public Result findMyByStatus(@RequestBody MessageModel messageModel) {
+        //获取根据session获取objectId
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        String objectId = (String) request.getSession().getAttribute("ID");
+
+        //获取接收者ID 等同于用户信息表中获取用户ID
+        String msgReceiverId = userService.findByObjectId(objectId).getUserId();
+
+        //根据查看状态和接收人ID查找通知信息
+        List<MessageModel> list = messageService.findByMsgStatusAndMsgReceiverId(messageModel.getMsgStatus(),msgReceiverId);
 
         return Result.success(list);
     }

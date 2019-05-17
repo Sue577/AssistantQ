@@ -21,7 +21,7 @@ public interface ApplicationRepository extends JpaRepository<ApplicationModel,St
     List<ApplicationModel> findAllApplication();
 
     //根据编号查找报名信息
-    @Query("select applicationModel from ApplicationModel applicationModel where applicationModel.delTime is null and applicationModel.objectId = :objectId")
+    @Query("select applicationModel from ApplicationModel applicationModel where applicationModel.delTime is null and applicationModel.objectId = ?1")
     ApplicationModel findByObjectId(@Param("objectId") String objectId);
 
     //根据招聘编号查找报名信息
@@ -47,4 +47,12 @@ public interface ApplicationRepository extends JpaRepository<ApplicationModel,St
     //根据招聘编号和提交者ID查询报名信息
     @Query("select applicationModel from ApplicationModel applicationModel where applicationModel.delTime is null and applicationModel.applRecruitId = ?1 and  applicationModel.applSubmitterId = ?2 ")
     ApplicationModel findByApplRecruitIdAndApplSubmitterId(@Param("applRecruitId") String applRecruitId,@Param("applSubmitterId") String applSubmitterId);
+
+    //根据报名审核状态和提交者ID查询报名信息
+    @Query("select applicationModel from ApplicationModel applicationModel where applicationModel.delTime is null and applicationModel.applStatus = ?1 and  applicationModel.applSubmitterId = ?2 ")
+    List<ApplicationModel> findByApplStatusAndApplSubmitterId(@Param("applStatus") String applRecruitId,@Param("applSubmitterId") String applSubmitterId);
+
+    //根据报名审核状态和审核者ID查询报名信息
+    @Query("select applicationModel from ApplicationModel applicationModel where applicationModel.delTime is null and applicationModel.applStatus = ?1 and  applicationModel.applAuditorId = ?2 ")
+    List<ApplicationModel> findByApplStatusAndApplAuditorId(@Param("applStatus") String applRecruitId,@Param("applAuditorId") String applAuditorId);
 }

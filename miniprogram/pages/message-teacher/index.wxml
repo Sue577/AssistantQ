@@ -1,11 +1,12 @@
+<!-- tab切换 -->
 <i-tabs current="{{ current }}" bindchange="handleChange">
-    <i-tab key="beforeLook" title="未查看" count="4"></i-tab>
-    <i-tab key="afterLook" title="已查看"></i-tab>
+    <i-tab key="before" title="待查看" count="{{countBefore}}"></i-tab>
+    <i-tab key="after" title="已查看"></i-tab>
 </i-tabs>
 
 
-<!-- 假数据 未查看 -->
-<i-cell-group wx:if="{{ beforeLook }}">
+<!-- 假数据 待查看 -->
+<!-- <i-cell-group wx:if="{{ before }}">
   <view class="weui-cells__title"></view>
   <i-cell title="你的xx报名已被审核通过，恭喜~" label="06-18 12:00" value="">
     <i-icon type="remind" slot="icon" size="28" color="#5cadff" />
@@ -22,10 +23,10 @@
   <i-cell title="你的xx报名已被审核通过，恭喜~" label="06-18 12:00" value="">
     <i-icon type="remind" slot="icon" size="28" color="#f759ab" />
   </i-cell>
-</i-cell-group>
+</i-cell-group> -->
 
 <!-- 假数据 已查看 -->
-<i-cell-group wx:if="{{ afterLook }}">
+<!-- <i-cell-group wx:if="{{ after }}">
   <view class="weui-cells__title"></view>
   <i-cell title="好可惜啊你报名没通过~" label="06-18 12:00" value="">
     <i-icon type="remind_fill" slot="icon" size="28" color="#5cadff" />
@@ -42,13 +43,21 @@
   <i-cell title="太妙啦啦啦啦啦啦啦啦啦~" label="06-18 12:00" value="">
     <i-icon type="remind_fill" slot="icon" size="28" color="#f759ab" />
   </i-cell>
+</i-cell-group> -->
+
+<!-- 待查看 -->
+<i-cell-group wx:if="{{ before }}" wx:for="{{findMyBefore}}" wx:key="id">
+  <view class="weui-cells__title"></view>
+  <i-cell title="{{item.msgDesc}}" label="{{item.createTime}}" value="" bind:click="handleOpenBeforeDetail" data-id="{{item.objectId}}">
+    <i-icon type="remind" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
 </i-cell-group>
 
-<!-- 通知信息 -->
-<i-cell-group wx:if="{{ recruit }}" wx:for="{{findAllRecruit}}" wx:key="id">
-  <view class="weui-cells__title">{{item.id}}</view>
-  <i-cell title="{{item.recrTitle}}" label="{{item.createTime}}" value="详细信息" is-link>
-    <i-icon type="collection" slot="icon" size="28" color="#5cadff" />
+<!-- 已查看 -->
+<i-cell-group wx:if="{{ after }}" wx:for="{{findMyAfter}}" wx:key="id">
+  <view class="weui-cells__title"></view>
+  <i-cell title="{{item.msgDesc}}~" label="{{item.createTime}}" value="">
+    <i-icon type="remind_fill" slot="icon" size="28" color="#5cadff" />
   </i-cell>
 </i-cell-group>
 
@@ -59,6 +68,9 @@
   </view>
   <view class="weui-footer__text">{{copyright}}</view>
 </view>
+
+<!-- 返回消息 -->
+<i-message id="message" />
 
 <!-- 提示框 -->
 <i-toast id="toast" />

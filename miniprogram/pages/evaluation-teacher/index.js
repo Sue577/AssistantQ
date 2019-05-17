@@ -10,6 +10,19 @@ Page({
     copyright: getApp().globalData.copyright,//底部版权
     link: getApp().globalData.link,//底部链接
 
+    objectId: '',//考核编号
+    createTime: '',//创建时间
+    evalCourse: '软件工程',//相关课程
+    evalTerm: '2018-2019-2',//考核学期
+    evalDesc: '工作很努力',//考核工作描述
+    evalSubmitterName: '吴苏琪',//提交者姓名
+    evalSubmitterId: '',//提交者ID
+    evalLevel: '',//考核等级
+    evalAuditorId: '',//审核者ID
+    evalStatus: '未审核',//考核审核状态
+
+    starIndex: 0,//考核星星数
+
     addModal: false,//新增对话框
     detailModalBefore: false,//未审核的详情对话框
     detailModalAfter: false,//已审核的详情对话框
@@ -40,9 +53,6 @@ Page({
         color: '#2d8cf0'
       },
     ],
-
-    starIndex: 0,
-    evalLevel: ''
 
   },
 

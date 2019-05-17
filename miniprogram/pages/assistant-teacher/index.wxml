@@ -45,8 +45,8 @@
   <view class="weui-footer__text">{{copyright}}</view>
 </view>
 
-<!-- 详情对话框 可进行修改 -->
-<i-modal title="详情" wx:if="{{ detailModal }}" visible="{{ detailModal }}" actions="{{ actionsDetail }}" bind:click="handleDetailClick">
+<!-- 详情对话框 可进行修改工作职责 -->
+<i-modal title="修改工作职责" wx:if="{{ detailModal }}" visible="{{ detailModal }}" actions="{{ actionsDetail }}" bind:click="handleDetailClick">
   <i-input value="{{ assiName }}" title="助教姓名" disabled/>
   <view class='view'>工作职责</view>
   <i-input value="{{ assiWork }}" type="textarea" maxlength="100" autofocus placeholder="请输入工作职责(100字以内)" bind:change="assiWorkInput" i-class="input-textarea" />

@@ -16,20 +16,23 @@ import javax.persistence.Table;
  * 招聘信息描述	recrDesc
  * 提交者姓名 recrSubmitterName
  * 提交者ID	recrSubmitterId
+ * 截止时间 	recrDeadLine
  */
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "tb_recruit")
 @Data
 public class RecruitModel extends BaseEntity {
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String recrTitle;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String recrCourse;
-    @Column(nullable = false, length = 1024)
+    @Column(nullable = true, length = 1024)
     private String recrDesc;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String recrSubmitterName;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String recrSubmitterId;
+    @Column(nullable = true, length = 32)
+    private String recrDeadLine;
 }

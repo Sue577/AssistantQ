@@ -90,7 +90,7 @@ public class UserController {
     }
 
     //管理员根据用户ID查找用户 返回用户信息
-    @GetMapping(value = "/admin/findByUserId")
+    @PostMapping(value = "/admin/findByUserId")
     public Result findByUserId(@RequestBody UserModel userModel) {
         UserModel userResult = userService.findByUserId(userModel.getUserId());
 

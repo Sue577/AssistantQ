@@ -5,8 +5,8 @@ const {
 Page({
   data: {
     copyright: getApp().globalData.copyright, //版权
-    userId: '',
-    userPwd: '',
+    userId: '',//用户ID
+    userPwd: '',//用户密码
   },
   // 获取输入userId  
   userIdInput: function(e) {
@@ -30,41 +30,41 @@ Page({
       });
     } else {
       // 假登录
-      if (this.data.userId == '31501284') {
-        //登录成功提示
-        $Toast({
-          content: '登录成功',
-          type: 'success'
-        });
-        setTimeout(() => {
-          //要延时执行的代码
-          $Toast.hide();
-          wx.redirectTo({ //当前页面切换成主界面-学生
-            url: '../home-student/index',
-          })
-        }, 1000);
-      } else if (this.data.userId == 'J10000') {
-        //登录成功提示
-        $Toast({
-          content: '登录成功',
-          type: 'success'
-        });
-        setTimeout(() => {
-          //要延时执行的代码
-          $Toast.hide();
-          wx.redirectTo({ //当前页面切换成主界面-教师
-            url: '../home-teacher/index',
-          })
+      // if (this.data.userId == '31501284') {
+      //   //学生登录成功提示
+      //   $Toast({
+      //     content: '小同志好，欢迎进入本系统',
+      //     type: 'success'
+      //   });
+      //   setTimeout(() => {
+      //     //要延时执行的代码
+      //     $Toast.hide();
+      //     wx.redirectTo({ //当前页面切换成主界面-学生
+      //       url: '../home-student/index',
+      //     })
+      //   }, 1000);
+      // } else if (this.data.userId == 'J10000') {
+      //   //教师登录成功提示
+      //   $Toast({
+      //     content: '老师您好，欢迎进入本系统',
+      //     type: 'success'
+      //   });
+      //   setTimeout(() => {
+      //     //要延时执行的代码
+      //     $Toast.hide();
+      //     wx.redirectTo({ //当前页面切换成主界面-教师
+      //       url: '../home-teacher/index',
+      //     })
 
-        }, 1000);
+      //   }, 1000);
+      // }
 
       //上传登录信息并获取服务器登录数据，判断是否登录成功
-      // this.postLoginData()
-    }
+      this.postLoginData()
     }
   },
   //上传登录信息并获取服务器登录数据，判断是否登录成功
-  postLoginData: function() {
+  postLoginData:function() {
     var that = this
     var url = getApp().globalData.url; //获取app.js中的url
 
@@ -87,9 +87,9 @@ Page({
           getApp().globalData.header.Cookie = 'JSESSIONID=' + result.SessionId;
 
           if (result.userType == '学生') {
-            //登录成功提示
+            //学生登录成功提示
             $Toast({
-              content: '登录成功',
+              content: '小同志好，欢迎进入本系统',
               type: 'success'
             });
             setTimeout(() => {
@@ -100,9 +100,9 @@ Page({
               })
             }, 1000);
           } else if (result.userType == '教师') {
-            //登录成功提示
+            //教师登录成功提示
             $Toast({
-              content: '登录成功',
+              content: '老师您好，欢迎进入本系统',
               type: 'success'
             });
             setTimeout(() => {
@@ -120,8 +120,6 @@ Page({
               type: 'error'
             });
           }
-
-
 
         }
 

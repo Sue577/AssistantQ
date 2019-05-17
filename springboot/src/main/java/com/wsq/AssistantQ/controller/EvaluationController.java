@@ -65,7 +65,7 @@ public class EvaluationController {
     }
 
     //管理员根据提交者姓名查找工作考核 返回工作考核列表
-    @GetMapping(value = "/admin/findByEvalSubmitterName")
+    @PostMapping(value = "/admin/findByEvalSubmitterName")
     public Result findByEvalSubmitterName(@RequestBody EvaluationModel evaluationModel) {
         List<EvaluationModel> list = evaluationService.findByEvalSubmitterName(evaluationModel.getEvalSubmitterName());
 
@@ -73,7 +73,7 @@ public class EvaluationController {
     }
 
     //管理员根据工作考核审核状态查找工作考核 返回工作考核列表
-    @GetMapping(value = "/admin/findByEvalStatus")
+    @PostMapping(value = "/admin/findByEvalStatus")
     public Result findByEvalStatus(@RequestBody EvaluationModel evaluationModel) {
         List<EvaluationModel> list = evaluationService.findByEvalStatus(evaluationModel.getEvalStatus());
 
@@ -139,6 +139,22 @@ public class EvaluationController {
         return Result.success(list);
     }
 
+    //学生根据审核状态查看自己工作考核信息 返回自己的工作考核列表
+    @PostMapping(value = "/student/findMyByStatus")
+    public Result findMyByStatus(@RequestBody EvaluationModel evaluationModel) {
+        //获取根据session获取objectId
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        String objectId = (String) request.getSession().getAttribute("ID");
+
+        //获取提交者ID 等同于用户信息表中获取用户ID
+        String evalSubmitterId=userService.findByObjectId(objectId).getUserId();
+
+        //根据考核审核状态和提交者ID查找工作考核
+        List<EvaluationModel> list = evaluationService.findByEvalStatusAndEvalSubmitterId(evaluationModel.getEvalStatus(),evalSubmitterId);
+        return Result.success(list);
+    }
+
     //教师根据工作考核编号动态更改自己需要审核的工作考核信息 返回更改后的自己审核的工作考核列表
     @PostMapping(value = "/teacher/modifyMyAudit")
     public Result modifyMyAudit(@RequestBody EvaluationModel evaluationModel) {
@@ -160,6 +176,22 @@ public class EvaluationController {
         String evalAuditorId=userService.findByObjectId(objectId).getUserId();
 
         List<EvaluationModel> list = evaluationService.findByEvalAuditorId(evalAuditorId);
+        return Result.success(list);
+    }
+
+    //教师根据审核状态查看自己需要审核的工作考核信息 返回自己审核的工作考核列表
+    @PostMapping(value = "/teacher/findMyAuditByStatus")
+    public Result findMyAuditByStatus(@RequestBody EvaluationModel evaluationModel) {
+        //获取根据session获取用户objectId
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        String objectId = (String) request.getSession().getAttribute("ID");
+
+        //获取审核者ID 等同于用户信息表中获取用户ID
+        String evalAuditorId=userService.findByObjectId(objectId).getUserId();
+
+        //根据考核审核状态和审核者ID查找工作考核
+        List<EvaluationModel> list = evaluationService.findByEvalStatusAndEvalAuditorId(evaluationModel.getEvalStatus(),evalAuditorId);
         return Result.success(list);
     }
 }

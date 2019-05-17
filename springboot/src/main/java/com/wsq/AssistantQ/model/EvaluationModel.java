@@ -25,20 +25,20 @@ import javax.persistence.Table;
 @Table(name = "tb_evaluation")
 @Data
 public class EvaluationModel extends BaseEntity {
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String evalCourse;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String evalTerm;
-    @Column(nullable = false, length = 255)
+    @Column(nullable = true, length = 255)
     private String evalDesc;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String evalSubmitterName;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String evalSubmitterId;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String evalLevel;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String evalAuditorId;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String evalStatus;
 }

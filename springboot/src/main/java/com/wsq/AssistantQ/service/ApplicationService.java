@@ -70,6 +70,15 @@ public class ApplicationService {
             if(applicationModel.getApplStatus() !=null && applicationItem.getApplStatus().equals(applicationModel.getApplStatus()) == false ){
                 applicationItem.setApplStatus(applicationModel.getApplStatus());
             }
+            if(applicationModel.getApplClass() !=null && applicationItem.getApplClass().equals(applicationModel.getApplClass()) == false ){
+                applicationItem.setApplClass(applicationModel.getApplClass());
+            }
+            if(applicationModel.getApplPhone() !=null && applicationItem.getApplPhone().equals(applicationModel.getApplPhone()) == false ){
+                applicationItem.setApplPhone(applicationModel.getApplPhone());
+            }
+            if(applicationModel.getApplAuditorName() !=null && applicationItem.getApplAuditorName().equals(applicationModel.getApplAuditorName()) == false ){
+                applicationItem.setApplAuditorName(applicationModel.getApplAuditorName());
+            }
             baseService.modify(applicationRepository,applicationItem);
             applicationRepository.save(applicationItem);
         }
@@ -121,5 +130,18 @@ public class ApplicationService {
     public ApplicationModel findByApplRecruitIdAndApplSubmitterId(String applRecruitId,String applSubmitterId){
         ApplicationModel applicationModel = applicationRepository.findByApplRecruitIdAndApplSubmitterId(applRecruitId,applSubmitterId);
         return applicationModel;
+    }
+
+    //根据报名审核状态和提交者ID查询报名信息
+    public List<ApplicationModel> findByApplStatusAndApplSubmitterId(String applRecruitId,String applSubmitterId){
+        List<ApplicationModel> list = applicationRepository.findByApplStatusAndApplSubmitterId(applRecruitId,applSubmitterId);
+        return list;
+    }
+
+
+    //根据报名审核状态和审核者ID查询报名信息
+    public List<ApplicationModel> findByApplStatusAndApplAuditorId(String applRecruitId,String applAuditorId){
+        List<ApplicationModel> list = applicationRepository.findByApplStatusAndApplAuditorId(applRecruitId,applAuditorId);
+        return list;
     }
 }

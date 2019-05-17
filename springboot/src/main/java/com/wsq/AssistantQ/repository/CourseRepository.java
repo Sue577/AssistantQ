@@ -21,7 +21,7 @@ public interface CourseRepository extends JpaRepository<CourseModel,String>, Jpa
     List<CourseModel> findAllCourse();
 
     //根据编号查找课程
-    @Query("select courseModel from CourseModel courseModel where courseModel.delTime is null and courseModel.objectId = :objectId")
+    @Query("select courseModel from CourseModel courseModel where courseModel.delTime is null and courseModel.objectId = ?1")
     CourseModel findByObjectId(@Param("objectId") String objectId);
 
     //根据课程名称查找课程

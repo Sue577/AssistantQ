@@ -14,17 +14,19 @@ import javax.persistence.Table;
  * 通知发送人ID	msgSenderId
  * 通知接收人ID	msgReceiverId
  * 通知内容	msgDesc
+ * 通知状态 msgStatus
  */
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "tb_message")
 @Data
 public class MessageModel extends BaseEntity {
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String msgSenderId;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String msgReceiverId;
-    @Column(nullable = false, length = 255)
+    @Column(nullable = true, length = 255)
     private String msgDesc;
-
+    @Column(nullable = true, length = 32)
+    private String msgStatus;
 }

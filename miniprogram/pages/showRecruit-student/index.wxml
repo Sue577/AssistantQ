@@ -1,24 +1,23 @@
 <!-- 招聘标题 -->
 <i-row i-class="row-class">
-  <i-col span="24" i-class="col-class title">关于招聘《操作系统原理实验》助教的通知</i-col>
+  <i-col span="24" i-class="col-class title">{{recrTitle}}</i-col>
 </i-row>
 
 <!-- 招聘截止时间 相关课程 -->
 <i-row i-class="row-class">
-  <i-col span="12" i-class="col-class sub">截止时间 : 2019-06-28</i-col>
-  <i-col span="12" i-class="col-class sub">相关课程 : 操作系统原理实验</i-col>
+  <i-col span="12" i-class="col-class sub">截止时间 : {{recrDeadLine}}</i-col>
+  <i-col span="12" i-class="col-class sub">相关课程 : {{recrCourse}}</i-col>
 </i-row>
 
 <!-- 招聘描述 -->
 <i-row i-class="row-class">
-  <i-col span="24" i-class="col-class content"> 由于教学班级容量较大，现《操作系统原理实验》需要招聘助教。要求如下：\n 1、计算机专业大四学生；\n 2、熟悉linux操作系统；\n 3、编程能力较高，熟悉gcc编译器；\n 4、周一上午1、2节，周五上午和下午有自由支配的时间；\n 5、工作认真负责。\n 联系人：七七七 qiqq@zucc.edu.cn\n
-  </i-col>
+  <i-col span="24" i-class="col-class content"> {{recrDesc}}</i-col>
 </i-row>
 
 <!-- 提交者姓名 招聘创建时间 -->
 <i-row i-class="row-class">
-  <i-col span="24" i-class="col-class sub2">提交者 ： 七七七 </i-col>
-  <i-col span="24" i-class="col-class sub2">2019-06-28 12:00:22</i-col>
+  <i-col span="24" i-class="col-class sub2">提交者 ： {{recrSubmitterName}} </i-col>
+  <i-col span="24" i-class="col-class sub2">{{createTime}}</i-col>
 </i-row>
 
 <!-- 报名按钮 -->
@@ -27,7 +26,7 @@
 <!-- 我的报名简历 -->
 <i-row wx:if="{{ addApplicationSuccess }}" i-class="row-class">
   <i-col span="24" i-class="col-class light">我的报名简历</i-col>
-  <i-col span="24" i-class="col-class content1">我好强啊!我真是太棒了我！\n简直了哈哈哈哈哈哈</i-col>
+  <i-col span="24" i-class="col-class content1">{{ applDesc }}</i-col>
 </i-row>
 
 <!-- 页脚 -->
@@ -41,9 +40,14 @@
 <!-- 报名对话框 -->
 <i-modal title="新增报名信息" wx:if="{{ addApplicationModal }}" visible="{{ addApplicationModal }}" bind:ok="handleOkApplication" bind:cancel="handleCancelApplication">
   <i-input value="{{ applSubmitterName }}" maxlength="20" title="你的姓名" autofocus placeholder="请输入你的姓名" bind:change="applSubmitterNameInput" />
+  <i-input value="{{ applClass }}" maxlength="20" title="所属班级" autofocus placeholder="请输入所属班级" bind:change="applClassInput" />
+  <i-input value="{{ applPhone }}" maxlength="20" title="手机号码" autofocus placeholder="请输入手机号码" bind:change="applPhoneInput" />
   <view class='view'>报名简历</view>
   <i-input value="{{ applDesc }}" type="textarea" maxlength="200" autofocus placeholder="请输入你的简历(200字以内)" bind:change="applDescInput" i-class="input-textarea" />
 </i-modal>
 
 <!-- 返回消息 -->
 <i-message id="message" />
+
+<!-- 提示框 -->
+<i-toast id="toast" />

@@ -1,11 +1,11 @@
 <!-- tab切换 -->
 <i-tabs current="{{ current }}" bindchange="handleChange">
-    <i-tab key="before" title="未审核" count="4"></i-tab>
+    <i-tab key="before" title="未审核" count="{{countBefore}}"></i-tab>
     <i-tab key="after" title="已审核"></i-tab>
 </i-tabs>
 
-<!-- 未审核列表 -->
-<i-cell-group wx:if="{{ before }}">
+<!-- 假数据 未审核列表 -->
+<!-- <i-cell-group wx:if="{{ before }}">
   <view class="weui-cells__title"></view>
   <i-cell title="软件工程" label="06-28 13:00" value="待审核" is-link bind:click="handleOpenDetailBefore">
     <i-icon type="barrage" slot="icon" size="28" color="#5cadff" />
@@ -25,10 +25,10 @@
   <i-cell title="软件测试" label="06-28 13:00" value="待审核" is-link bind:click="handleOpenDetailBefore">
     <i-icon type="barrage" slot="icon" size="28" color="#f759ab" />
   </i-cell>
-</i-cell-group>
+</i-cell-group> -->
 
-<!-- 已审核列表 -->
-<i-cell-group wx:if="{{ after }}">
+<!-- 假数据 已审核列表 -->
+<!-- <i-cell-group wx:if="{{ after }}">
   <view class="weui-cells__title"></view>
   <i-cell title="软件工程" label="06-28 13:00" value="通过" is-link bind:click="handleOpenDetailAfter">
     <i-icon type="barrage_fill" slot="icon" size="28" color="#5cadff" />
@@ -48,6 +48,30 @@
   <i-cell title="软件测试" label="06-28 13:00" value="通过" is-link bind:click="handleOpenDetailAfter">
     <i-icon type="barrage_fill" slot="icon" size="28" color="#5cadff" />
   </i-cell>
+</i-cell-group> -->
+
+<!-- 未审核列表 -->
+<i-cell-group wx:if="{{ before }}" wx:for="{{findMyBefore}}" wx:key="id">
+  <view class="weui-cells__title"></view>
+  <i-cell title="{{item.applCourse}}" label="{{item.createTime}}" value="{{item.applStatus}}" is-link bind:click="handleOpenDetailBefore" data-id="{{item.objectId}}" data-course="{{item.applCourse}}" data-desc="{{item.applDesc}}" data-submitterid="{{item.applSubmitterId}}" data-submittername="{{item.applSubmitterName}}" data-class1="{{item.applClass}}" data-phone="{{item.applPhone}}" data-auditorid="{{item.applAuditorId}}" data-auditorname="{{item.applAuditorName}}" data-status="{{item.applStatus}}">
+    <i-icon type="barrage" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 已审核列表 通过-->
+<i-cell-group wx:if="{{ after }}" wx:for="{{findMyAfter}}" wx:key="id">
+  <view class="weui-cells__title"></view>
+  <i-cell title="{{item.applCourse}}" label="{{item.createTime}}" value="{{item.applStatus}}" is-link bind:click="handleOpenDetailAfter" data-id="{{item.objectId}}" data-course="{{item.applCourse}}" data-desc="{{item.applDesc}}" data-submitterid="{{item.applSubmitterId}}" data-submittername="{{item.applSubmitterName}}" data-class1="{{item.applClass}}" data-phone="{{item.applPhone}}" data-auditorid="{{item.applAuditorId}}" data-auditorname="{{item.applAuditorName}}" data-status="{{item.applStatus}}">
+    <i-icon type="barrage_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
+</i-cell-group>
+
+<!-- 已审核列表 不通过-->
+<i-cell-group wx:if="{{ after }}" wx:for="{{findMyAfter2}}" wx:key="id">
+  <view class="weui-cells__title"></view>
+  <i-cell title="{{item.applCourse}}" label="{{item.createTime}}" value="{{item.applStatus}}" is-link bind:click="handleOpenDetailAfter" data-id="{{item.objectId}}" data-course="{{item.applCourse}}" data-desc="{{item.applDesc}}" data-submitterid="{{item.applSubmitterId}}" data-submittername="{{item.applSubmitterName}}" data-class1="{{item.applClass}}" data-phone="{{item.applPhone}}" data-auditorid="{{item.applAuditorId}}" data-auditorname="{{item.applAuditorName}}" data-status="{{item.applStatus}}">
+    <i-icon type="barrage_fill" slot="icon" size="28" color="#5cadff" />
+  </i-cell>
 </i-cell-group>
 
 <!-- 页脚 -->
@@ -60,21 +84,25 @@
 
 <!-- 未审核的详情对话框 可进行修改 -->
 <i-modal title="详情" wx:if="{{ detailModalBefore }}" visible="{{ detailModalBefore }}" actions="{{ actionsDetailBefore }}" bind:click="handleDetailClickBefore">
-  <i-input value="{{ applCourse }}" title="报名课程" disabled/>
-  <i-input value="{{ applSubmitterName }}" title="学生姓名" disabled/>
+  <i-input value="{{ applCourseBefore }}" title="报名课程" disabled/>
+  <i-input value="{{ applSubmitterNameBefore }}" title="学生姓名" disabled/>
   <view class='view'>报名简历</view>
-  <i-input value="{{ applDesc }}" type="textarea" maxlength="200" autofocus placeholder="请输入报名简历(200字以内)" bind:change="applDescInput" i-class="input-textarea" />
-  <i-input value="{{ applStatus }}" title="审核状态" disabled/>
+  <i-input value="{{ applDescBefore }}" type="textarea" maxlength="200" autofocus placeholder="请输入报名简历(200字以内)" bind:change="applDescBeforeInput" i-class="input-textarea" />
+  <i-input value="{{ applStatusBefore }}" title="审核状态" disabled/>
 </i-modal>
 
 <!-- 已审核的详情对话框 只能看 -->
 <i-modal title="详情" wx:if="{{ detailModalAfter }}" visible="{{ detailModalAfter }}" actions="{{ actionsDetailAfter }}" bind:click="handleDetailClickAfter">
-  <i-input value="{{ applCourse }}" title="报名课程" disabled/>
-  <i-input value="{{ applSubmitterName }}" title="学生姓名" disabled/>
+  <i-input value="{{ applCourseAfter }}" title="报名课程" disabled/>
+  <i-input value="{{ applSubmitterNameAfter }}" title="学生姓名" disabled/>
   <view class='view'>报名简历</view>
-  <i-input value="{{ applDesc }}" disabled i-class="input-textarea" />
-  <i-input value="{{ applStatus2 }}" title="审核状态" disabled/>
+  <i-input value="{{ applDescAfter }}" disabled i-class="input-textarea" />
+  <i-input value="{{ applStatusAfter }}" title="审核状态" disabled/>
 </i-modal>
+
 
 <!-- 返回消息 -->
 <i-message id="message" />
+
+<!-- 提示框 -->
+<i-toast id="toast" />

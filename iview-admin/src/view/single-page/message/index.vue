@@ -4,10 +4,10 @@
       <div class="message-page-con message-category-con">
         <Menu width="auto" active-name="unread" @on-select="handleSelect">
           <MenuItem name="unread">
-            <span class="category-title">未读消息</span><Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
+            <span class="category-title">待查看</span><Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
           </MenuItem>
           <MenuItem name="readed">
-            <span class="category-title">已读消息</span><Badge style="margin-left: 10px" class-name="gray-dadge" :count="messageReadedCount"></Badge>
+            <span class="category-title">已查看</span><Badge style="margin-left: 10px" class-name="gray-dadge" :count="messageReadedCount"></Badge>
           </MenuItem>
           <MenuItem name="trash">
             <span class="category-title">回收站</span><Badge style="margin-left: 10px" class-name="gray-dadge" :count="messageTrashCount"></Badge>

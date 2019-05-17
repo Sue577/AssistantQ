@@ -1,24 +1,33 @@
-<!-- 课程列表 -->
-<view class="weui-cells__title">课程信息列表</view>
+<!-- 假数据 课程信息列表 -->
+<!-- <view class="weui-cells__title">课程信息列表</view>
 <i-cell-group>
   <view class="weui-cells__title"></view>
   <i-cell title="软件工程" label="06-28 13:00" value="课程详情" is-link bind:click="handleOpenDetail">
-    <i-icon type="emoji" slot="icon" size="28" color="#5cadff" />
+    <i-icon type="flag" slot="icon" size="28" color="#5cadff" />
   </i-cell>
 
   <view class="weui-cells__title"></view>
   <i-cell title="数据结构" label="06-28 13:00" value="课程详情" is-link bind:click="handleOpenDetail">
-    <i-icon type="emoji" slot="icon" size="28" color="#f759ab" />
+    <i-icon type="flag" slot="icon" size="28" color="#f759ab" />
   </i-cell>
 
   <view class="weui-cells__title"></view>
   <i-cell title="软件需求" label="06-28 13:00" value="课程详情" is-link bind:click="handleOpenDetail">
-    <i-icon type="emoji" slot="icon" size="28" color="#5cadff" />
+    <i-icon type="flag" slot="icon" size="28" color="#5cadff" />
   </i-cell>
 
   <view class="weui-cells__title"></view>
   <i-cell title="软件测试" label="06-28 13:00" value="课程详情" is-link bind:click="handleOpenDetail">
-    <i-icon type="emoji" slot="icon" size="28" color="#f759ab" />
+    <i-icon type="flag" slot="icon" size="28" color="#f759ab" />
+  </i-cell>
+</i-cell-group> -->
+
+<!-- 课程信息列表 -->
+<view class="weui-cells__title">课程信息列表</view>
+<i-cell-group wx:for="{{findMy}}" wx:key="id">
+  <view class="weui-cells__title"></view>
+  <i-cell title="{{item.courName}}" label="{{item.createTime}}" value="课程详情" is-link bind:click="handleOpenDetail" data-id="{{item.objectId}}" data-teacher="{{item.courTeacherName}}" data-name="{{item.courName}}" data-desc="{{item.courDesc}}">
+    <i-icon type="flag" slot="icon" size="28" color="#5cadff" />
   </i-cell>
 </i-cell-group>
 
@@ -37,19 +46,22 @@
 
 <!-- 新增对话框 -->
 <i-modal title="新增" wx:if="{{ addModal }}" visible="{{ addModal }}" bind:ok="handleOkAdd" bind:cancel="handleCancelAdd">
-  <i-input value="{{ courName }}" maxlength="20" title="课程名称" autofocus placeholder="请输入课程名称" bind:change="courNameInput" />
-  <i-input value="{{ courTeacherName }}" maxlength="20" title="课程教师" autofocus placeholder="请输入课程教师" bind:change="courTeacherNameInput" />
+  <i-input value="{{ courNameAdd }}" maxlength="20" title="课程名称" autofocus placeholder="请输入课程名称" bind:change="courNameAddInput" />
+  <i-input value="{{ courTeacherNameAdd }}" maxlength="20" title="课程教师" autofocus placeholder="请输入课程教师" bind:change="courTeacherNameAddInput" />
   <view class='view'>课程描述</view>
-  <i-input value="{{ courDesc }}" type="textarea" maxlength="200" autofocus placeholder="请输入课程描述(200字以内)" bind:change="courDescInput" i-class="input-textarea" />
+  <i-input value="{{ courDescAdd }}" type="textarea" maxlength="200" autofocus placeholder="请输入课程描述(200字以内)" bind:change="courDescAddInput" i-class="input-textarea" />
 </i-modal>
 
 <!-- 详情对话框 可进行删除和修改 -->
 <i-modal title="详情" wx:if="{{ detailModal }}" visible="{{ detailModal }}" actions="{{ actionsDetail }}" bind:click="handleDetailClick">
-  <i-input value="{{ courName }}" title="课程名称" disabled/>
-  <i-input value="{{ courTeacherName }}" title="课程教师" disabled/>
+  <i-input value="{{ courNameDetail }}" title="课程名称" disabled/>
+  <i-input value="{{ courTeacherNameDetail }}" title="课程教师" disabled/>
   <view class='view'>课程描述</view>
-  <i-input value="{{ courDesc }}" type="textarea" maxlength="200" autofocus placeholder="请输入课程描述(200字以内)" bind:change="courDescInput" i-class="input-textarea" />
+  <i-input value="{{ courDescDetail }}" type="textarea" maxlength="200" autofocus placeholder="请输入课程描述(200字以内)" bind:change="courDescDetailInput" i-class="input-textarea" />
 </i-modal>
 
 <!-- 返回消息 -->
 <i-message id="message" />
+
+<!-- 提示框 -->
+<i-toast id="toast" />

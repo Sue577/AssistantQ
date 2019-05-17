@@ -10,6 +10,18 @@ Page({
     copyright: getApp().globalData.copyright,//底部版权
     link: getApp().globalData.link,//底部链接
 
+    objectId: '',//记录编号
+    createTime: '',//记录创建时间
+    recoDate: '2018-06-28',//工作日期
+    recoHours: '3',//工作时长
+    recoDesc: '在课堂上帮学生答疑',//工作描述
+    recoCourse: '软件工程',//相关课程
+    recoSubmitterName: '吴苏琪',//提交者姓名
+    recoSubmitterId: '',//提交者ID
+    recoAuditorId: '',//审核者ID
+    recoStatus: '待审核',//记录审核状态
+    recoStatus2: '通过',//记录审核状态
+
     addModal: false,//新增对话框
     detailModalBefore: false,//未审核的详情对话框
     detailModalAfter: false,//已审核的详情对话框

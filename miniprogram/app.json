@@ -1,19 +1,18 @@
 {
   "pages": [
-    "pages/course-teacher/index",
-
+    
     "pages/login/index",
     "pages/application-student/index",
     "pages/application-teacher/index",
     "pages/basic-student/index",
     "pages/basic-teacher/index",
-    
+    "pages/course-teacher/index",
     "pages/evaluation-student/index",
     "pages/evaluation-teacher/index",
     "pages/home-teacher/index",
     "pages/home-student/index",
     "pages/message-student/index",
-    "pages/message-teacher/index",
+    "pages/message-teacher/index", 
     "pages/record-student/index",
     "pages/record-teacher/index",
     "pages/recruit-teacher/index",

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <Dropdown trigger="click" @on-click="selectLang">
       <a href="javascript:void(0)">
         {{ title }}
@@ -9,7 +9,7 @@
         <DropdownItem v-for="(value, key) in localList" :name="key" :key="`lang-${key}`">{{ value }}</DropdownItem>
       </DropdownMenu>
     </Dropdown>
-  </div>
+  </div> -->
 </template>
 
 <script>

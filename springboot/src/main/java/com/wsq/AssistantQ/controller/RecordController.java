@@ -65,7 +65,7 @@ public class RecordController {
     }
 
     //管理员根据提交者姓名查找工作记录 返回工作记录列表
-    @GetMapping(value = "/admin/findByRecoSubmitterName")
+    @PostMapping(value = "/admin/findByRecoSubmitterName")
     public Result findByRecoSubmitterName(@RequestBody RecordModel recordModel) {
         List<RecordModel> list = recordService.findByRecoSubmitterName(recordModel.getRecoSubmitterName());
 
@@ -73,7 +73,7 @@ public class RecordController {
     }
 
     //管理员根据工作记录审核状态查找工作记录 返回工作记录列表
-    @GetMapping(value = "/admin/findByRecoStatus")
+    @PostMapping(value = "/admin/findByRecoStatus")
     public Result findByRecoStatus(@RequestBody RecordModel recordModel) {
         List<RecordModel> list = recordService.findByRecoStatus(recordModel.getRecoStatus());
 
@@ -139,6 +139,22 @@ public class RecordController {
         return Result.success(list);
     }
 
+    //学生根据审核状态查看自己工作记录信息 返回自己的工作记录列表
+    @PostMapping(value = "/student/findMyByStatus")
+    public Result findMyByStatus(@RequestBody RecordModel recordModel) {
+        //获取根据session获取objectId
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        String objectId = (String) request.getSession().getAttribute("ID");
+
+        //获取提交者ID 等同于用户信息表中获取用户ID
+        String recoSubmitterId=userService.findByObjectId(objectId).getUserId();
+
+        //根据记录审核状态和提交者ID查找工作记录
+        List<RecordModel> list = recordService.findByRecoStatusAndRecoSubmitterId(recordModel.getRecoStatus(),recoSubmitterId);
+        return Result.success(list);
+    }
+
     //教师根据工作记录编号动态更改自己需要审核的工作记录信息 返回更改后的自己审核的工作记录列表
     @PostMapping(value = "/teacher/modifyMyAudit")
     public Result modifyMyAudit(@RequestBody RecordModel recordModel) {
@@ -160,6 +176,22 @@ public class RecordController {
         String recoAuditorId=userService.findByObjectId(objectId).getUserId();
 
         List<RecordModel> list = recordService.findByRecoAuditorId(recoAuditorId);
+        return Result.success(list);
+    }
+
+    //教师根据审核状态查看自己需要审核的工作记录信息 返回自己审核的工作记录列表
+    @PostMapping(value = "/teacher/findMyAuditByStatus")
+    public Result findMyAuditByStatus(@RequestBody RecordModel recordModel) {
+        //获取根据session获取objectId
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attributes.getRequest();
+        String objectId = (String) request.getSession().getAttribute("ID");
+
+        //获取审核者ID 等同于用户信息表中获取用户ID
+        String recoAuditorId=userService.findByObjectId(objectId).getUserId();
+
+        //根据记录审核状态和审核者ID查找工作记录
+        List<RecordModel> list = recordService.findByRecoStatusAndRecoAuditorId(recordModel.getRecoStatus(),recoAuditorId);
         return Result.success(list);
     }
 }

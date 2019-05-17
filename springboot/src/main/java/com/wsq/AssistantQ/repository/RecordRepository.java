@@ -21,7 +21,7 @@ public interface RecordRepository extends JpaRepository<RecordModel,String>, Jpa
     List<RecordModel> findAllRecord();
 
     //根据编号查找工作记录
-    @Query("select recordModel from RecordModel recordModel where recordModel.delTime is null and recordModel.objectId = :objectId")
+    @Query("select recordModel from RecordModel recordModel where recordModel.delTime is null and recordModel.objectId = ?1")
     RecordModel findByObjectId(@Param("objectId") String objectId);
 
     //根据工作日期查找工作记录
@@ -47,4 +47,12 @@ public interface RecordRepository extends JpaRepository<RecordModel,String>, Jpa
     //根据记录审核状态查找工作记录
     @Query("select recordModel from RecordModel recordModel where recordModel.delTime is null and recordModel.recoStatus = ?1")
     List<RecordModel> findByRecoStatus(@Param("recoStatus") String recoStatus);
+
+    //根据记录审核状态和提交者ID查找工作记录
+    @Query("select recordModel from RecordModel recordModel where recordModel.delTime is null and recordModel.recoStatus = ?1 and recordModel.recoSubmitterId = ?2")
+    List<RecordModel> findByRecoStatusAndRecoSubmitterId(@Param("recoStatus") String recoStatus,@Param("recoSubmitterId") String recoSubmitterId);
+
+    //根据记录审核状态和审核者ID查找工作记录
+    @Query("select recordModel from RecordModel recordModel where recordModel.delTime is null and recordModel.recoStatus = ?1 and recordModel.recoAuditorId = ?2")
+    List<RecordModel> findByRecoStatusAndRecoAuditorId(@Param("recoStatus") String recoStatus,@Param("recoAuditorId") String recoAuditorId);
 }

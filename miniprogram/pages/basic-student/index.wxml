@@ -1,26 +1,26 @@
 <!-- 头像 姓名 学号 是否为助教 -->
-<i-card full title="吴苏琪" extra="31501284" thumb="../../images/avatar.png" i-class="card-demo">
-  <view slot="content">你现在还不是助教呢~快去看看招聘动态吧</view>
+<i-card full title="{{ stuName }}" extra="{{ stuId }}" thumb="../../images/avatar.png" i-class="card-demo">
+  <view slot="content">{{ tag }}</view>
 </i-card>
 
 <!-- 学生信息 -->
 <view class="weui-cells__title"></view>
-<i-cell title="所属班级" label="" value="软件工程1501">
+<i-cell title="所属班级" label="" value="{{ stuClass }}">
   <i-icon type="businesscard" slot="icon" size="28" color="#2d8cf0" />
 </i-cell>
-<i-cell title="所属分院" label="" value="计算机与计算科学学院">
+<i-cell title="所属分院" label="" value="{{ stuBranch }}">
   <i-icon type="computer" slot="icon" size="28" color="#f759ab" />
 </i-cell>
-<i-cell title="所属学院" label="" value="浙江大学城市学院">
+<i-cell title="所属学院" label="" value="{{ stuSchool }}">
   <i-icon type="homepage" slot="icon" size="28" color="#DAA569" />
 </i-cell>
 
 <!-- 用户信息 -->
 <view class="weui-cells__title"></view>
-<i-cell title="用户邮箱" label="" value="807759022@qq.com" is-link bind:click="handleOpenEmail">
+<i-cell title="用户邮箱" label="" value="{{ userEmail }}" is-link bind:click="handleOpenEmail">
   <i-icon type="eit" slot="icon" size="28" color="#A066D3" />
 </i-cell>
-<i-cell title="用户手机号" label="" value="15858272997" is-link bind:click="handleOpenPhone">
+<i-cell title="用户手机号" label="" value="{{ userPhone }}" is-link bind:click="handleOpenPhone">
   <i-icon type="mobilephone" slot="icon" size="28" color="#5cadff" />
 </i-cell>
 <i-cell title="修改密码" label="" value="" is-link bind:click="handleOpenPwd">
@@ -51,3 +51,9 @@
   <i-input value="{{ userNewPwd }}" title="新密码" maxlength="20" type="password" placeholder="请输入你的新密码" bind:change="userNewPwdInput" />
   <i-input value="{{ userConfirmPwd }}" title="确认密码" maxlength="20" type="password" placeholder="请再次确认密码" bind:change="userConfirmPwdInput" />
 </i-modal>
+
+<!-- 返回消息 -->
+<i-message id="message" />
+
+<!-- 提示框 -->
+<i-toast id="toast" />

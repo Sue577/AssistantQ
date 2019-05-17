@@ -21,7 +21,7 @@ public interface EvaluationRepository extends JpaRepository<EvaluationModel,Stri
     List<EvaluationModel> findAllEvaluation();
 
     //根据编号查找工作考核
-    @Query("select evaluationModel from EvaluationModel evaluationModel where evaluationModel.delTime is null and evaluationModel.objectId = :objectId")
+    @Query("select evaluationModel from EvaluationModel evaluationModel where evaluationModel.delTime is null and evaluationModel.objectId = ?1")
     EvaluationModel findByObjectId(@Param("objectId") String objectId);
 
     //根据相关课程查找工作考核
@@ -52,5 +52,12 @@ public interface EvaluationRepository extends JpaRepository<EvaluationModel,Stri
     @Query("select evaluationModel from EvaluationModel evaluationModel where evaluationModel.delTime is null and evaluationModel.evalStatus = ?1")
     List<EvaluationModel> findByEvalStatus(@Param("evalStatus") String evalStatus);
 
+    //根据考核审核状态和提交者ID查找工作考核
+    @Query("select evaluationModel from EvaluationModel evaluationModel where evaluationModel.delTime is null and evaluationModel.evalStatus = ?1 and evaluationModel.evalSubmitterId = ?2")
+    List<EvaluationModel> findByEvalStatusAndEvalSubmitterId(@Param("evalStatus") String evalStatus,@Param("evalSubmitterId") String evalSubmitterId);
+
+    //根据考核审核状态和审核者ID查找工作考核
+    @Query("select evaluationModel from EvaluationModel evaluationModel where evaluationModel.delTime is null and evaluationModel.evalStatus = ?1 and evaluationModel.evalAuditorId = ?2")
+    List<EvaluationModel> findByEvalStatusAndEvalAuditorId(@Param("evalStatus") String evalStatus,@Param("evalAuditorId") String evalAuditorId);
 
 }

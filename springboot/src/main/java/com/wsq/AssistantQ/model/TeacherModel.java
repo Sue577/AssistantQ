@@ -22,14 +22,14 @@ import javax.persistence.Table;
 @Table(name = "tb_teacher")
 @Data
 public class TeacherModel extends BaseEntity {
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String teachId;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String teachName;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String teachLevel;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String teachBranch;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String teachSchool;
 }

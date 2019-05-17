@@ -44,7 +44,7 @@ public class BaseEntity {
         return createTime;
     }
 
-    public void setCreateTime(Date creatTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 

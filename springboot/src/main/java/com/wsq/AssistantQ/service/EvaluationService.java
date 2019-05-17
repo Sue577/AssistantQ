@@ -134,4 +134,16 @@ public class EvaluationService {
         List<EvaluationModel> list = evaluationRepository.findByEvalStatus(evalStatus);
         return list;
     }
+
+    //根据考核审核状态和提交者ID查找工作考核
+    public List<EvaluationModel> findByEvalStatusAndEvalSubmitterId(String evalStatus,String evalSubmitterId){
+        List<EvaluationModel> list = evaluationRepository.findByEvalStatusAndEvalSubmitterId(evalStatus,evalSubmitterId);
+        return list;
+    }
+
+    //根据考核审核状态和审核者ID查找工作考核
+    public List<EvaluationModel> findByEvalStatusAndEvalAuditorId(String evalStatus,String evalAuditorId){
+        List<EvaluationModel> list = evaluationRepository.findByEvalStatusAndEvalAuditorId(evalStatus,evalAuditorId);
+        return list;
+    }
 }

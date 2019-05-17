@@ -98,7 +98,7 @@
   <i-input value="{{ recoDate }}" title="工作日期" disabled/>
   <view class='view'>工作描述</view>
   <i-input value="{{ recoDesc }}" i-class="input-textarea" disabled/>
-  <i-input value="{{ recoStatus }}" title="审核状态" disabled/>
+  <i-input value="{{ recoStatus2 }}" title="审核状态" disabled/>
 </i-modal>
 
 <!-- 返回消息 -->

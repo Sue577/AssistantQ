@@ -26,20 +26,20 @@ import javax.validation.constraints.NotNull;
 @Table(name = "tb_user")
 @Data
 public class UserModel extends BaseEntity {
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String userId;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String userPwd;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String userNewPwd;
     @Column(nullable = true, length = 255)
     private String userImage;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String userName;
     @Column(nullable = true, length = 32)
     private String userEmail;
     @Column(nullable = true, length = 32)
     private String userPhone;
-    @Column(nullable = false, length = 32)
+    @Column(nullable = true, length = 32)
     private String userType;
 }

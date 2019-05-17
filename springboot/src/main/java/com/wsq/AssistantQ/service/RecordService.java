@@ -5,6 +5,7 @@ import com.wsq.AssistantQ.exception.MyException;
 import com.wsq.AssistantQ.model.RecordModel;
 import com.wsq.AssistantQ.repository.RecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +75,7 @@ public class RecordService {
             if(recordModel.getRecoStatus() !=null && recordItem.getRecoStatus().equals(recordModel.getRecoStatus()) == false ){
                 recordItem.setRecoStatus(recordModel.getRecoStatus());
             }
+
             baseService.modify(recordRepository,recordItem);
             recordRepository.save(recordItem);
         }
@@ -124,6 +126,19 @@ public class RecordService {
     //根据记录审核状态查找工作记录
     public List<RecordModel> findByRecoStatus(String recoStatus){
         List<RecordModel> list = recordRepository.findByRecoStatus(recoStatus);
+        return list;
+    }
+
+    //根据记录审核状态和提交者ID查找工作记录
+    public List<RecordModel> findByRecoStatusAndRecoSubmitterId(String recoStatus,String recoSubmitterId){
+        List<RecordModel> list = recordRepository.findByRecoStatusAndRecoSubmitterId(recoStatus,recoSubmitterId);
+        return list;
+    }
+
+
+    //根据记录审核状态和审核者ID查找工作记录
+    public List<RecordModel> findByRecoStatusAndRecoAuditorId(String recoStatus,String recoAuditorId){
+        List<RecordModel> list = recordRepository.findByRecoStatusAndRecoAuditorId(recoStatus,recoAuditorId);
         return list;
     }
 }

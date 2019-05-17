@@ -60,7 +60,7 @@ public class CourseController {
     }
 
     //管理员根据课程名称查找课程 返回课程信息
-    @GetMapping(value = "/admin/findByCourName")
+    @PostMapping(value = "/admin/findByCourName")
     public Result findByCourName(@RequestBody CourseModel courseModel) {
         CourseModel courseResult = courseService.findByCourName(courseModel.getCourName());
 
@@ -103,6 +103,15 @@ public class CourseController {
 
         //返回自己的课程列表
         return Result.success(findMy().getData());
+    }
+
+    //教师根据课程编号查找课程信息 返回课程信息
+    @PostMapping(value = "/teacher/findByObjectId")
+    public Result findByObjectId(@RequestBody CourseModel courseModel) {
+        CourseModel courseResult = courseService.findByObjectId(courseModel.getObjectId());
+
+        //返回自己的课程列表
+        return Result.success(courseResult);
     }
 
     //教师查看自己课程信息 返回自己的课程列表

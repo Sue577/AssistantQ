@@ -1,5 +1,5 @@
 <!-- 假数据 招聘动态 -->
-<i-cell-group wx:if="{{ recruit }}">
+<!-- <i-cell-group wx:if="{{ recruit }}">
   <view class="weui-cells__title"></view>
   <i-cell title="xxxx开始招人啦啦啦啦" label="06-18 12:00" value="招聘详情" is-link url="/pages/showRecruit-teacher/index">
     <i-icon type="collection" slot="icon" size="28" color="#5cadff" />
@@ -16,7 +16,7 @@
   <i-cell title="xxxx开始招人啦啦啦啦" label="06-18 12:00" value="招聘详情" is-link url="/pages/showRecruit-teacher/index">
     <i-icon type="collection" slot="icon" size="28" color="#f759ab" />
   </i-cell>
-</i-cell-group>
+</i-cell-group> -->
 
 <!-- 新增招聘按钮 -->
 <view wx:if="{{ recruit }}" class='add-icon' bindtap="handleOpenAddRecruit">
@@ -25,14 +25,14 @@
 
 <!-- 招聘动态 -->
 <i-cell-group wx:if="{{ recruit }}" wx:for="{{findAllRecruit}}" wx:key="id">
-  <view class="weui-cells__title">{{item.id}}</view>
-  <i-cell title="{{item.recrTitle}}" label="{{item.createTime}}" value="详细信息" is-link>
+  <view class="weui-cells__title"></view>
+  <i-cell title="{{item.recrTitle}}-{{item.recrSubmitterName}}" label="{{item.createTime}}" value="招聘详情" is-link url="/pages/showRecruit-teacher/index?objectId={{item.objectId}}">
     <i-icon type="collection" slot="icon" size="28" color="#5cadff" />
   </i-cell>
 </i-cell-group>
 
-<!-- 助教信息 -->
-<i-cell-group wx:if="{{ assistant }}">
+<!-- 假数据 助教信息 -->
+<!-- <i-cell-group wx:if="{{ assistant }}">
   <view class="weui-cells__title">我的课程1</view>
   <i-cell title="软件工程" label="" value="相关助教" is-link url="/pages/assistant-teacher/index">
     <i-icon type="emoji" slot="icon" size="28" color="#DAA569" />
@@ -49,16 +49,30 @@
   <i-cell title="软件测试" label="" value="相关助教" is-link url="/pages/assistant-teacher/index">
     <i-icon type="emoji" slot="icon" size="28" color="#f759ab" />
   </i-cell>
+</i-cell-group> -->
+
+
+<!-- 助教信息 -->
+<i-cell-group wx:if="{{ assistant }}" wx:for="{{findMyCourse}}" wx:key="id">
+  <view class="weui-cells__title">{{ item.id }}</view>
+  <i-cell title="{{item.courName}}" label="" value="相关助教" is-link url="/pages/assistant-teacher/index">
+    <i-icon type="emoji" slot="icon" size="28" color="#DAA569" />
+  </i-cell>
 </i-cell-group>
 
 <!-- 我的相关 -->
 <i-cell-group wx:if="{{ mine }}">
-  <i-card full title="七七七" extra="J10000" thumb="../../images/avatar.png" i-class="card-demo">
+  <!-- 假数据 我的信息 -->
+  <!-- <i-card full title="七七七" extra="J10000" thumb="../../images/avatar.png" i-class="card-demo">
+    <view slot="content">老师您好~欢迎来到AssistantQ助教管理系统</view>
+  </i-card> -->
+
+  <i-card full title="{{teachName}}" extra="{{teachId}}" thumb="../../images/avatar.png" i-class="card-demo">
     <view slot="content">老师您好~欢迎来到AssistantQ助教管理系统</view>
   </i-card>
 
   <view class="weui-cells__title"></view>
-  <i-cell title="基本信息" label="" value="" is-link url="/pages/basic-teacher/index">
+  <i-cell title="基础信息" label="" value="" is-link url="/pages/basic-teacher/index">
     <i-icon type="businesscard" slot="icon" size="28" color="#2d8cf0" />
   </i-cell>
   <i-cell title="收到通知" label="" value="" is-link url="/pages/message-teacher/index">
@@ -86,7 +100,7 @@
 </i-cell-group>
 
 <!-- 底部导航栏 -->
-<i-tab-bar fixed="true" current="{{ current }}" bindchange="handleChange" color="#f759ab">
+<i-tab-bar fixed="true" current="{{ current }}" bindchange="handleChange" color="#2d8cf0">
   <i-tab-bar-item key="recruit" icon="activity" current-icon="activity_fill" title="招聘动态"></i-tab-bar-item>
   <i-tab-bar-item key="assistant" icon="group" current-icon="group_fill" title="助教信息"></i-tab-bar-item>
   <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" title="我的相关"></i-tab-bar-item>
@@ -107,11 +121,14 @@
   <i-input value="{{ recrSubmitterName }}" maxlength="20" title="你的姓名" autofocus placeholder="请输入你的姓名" bind:change="recrSubmitterNameInput" />
   <view class='view'>截止时间</view>
   <picker mode="date" value="{{recrDeadLine}}" start="2018-09-01" end="2040-09-01" bindchange="recrDeadLineInput">
-    <view class="weui-input"  class="input-picker">2019-06-28</view>
+    <view class="weui-input"  class="input-picker">请选择截止日期</view>
   </picker>
   <view class='view'>招聘描述</view>
   <i-input value="{{ recrDesc }}" type="textarea" maxlength="800" autofocus placeholder="请输入招聘信息描述(800字以内)" bind:change="recrDescInput" i-class="input-textarea" />
 </i-modal>
+
+<!-- 返回消息 -->
+<i-message id="message" />
 
 <!-- 提示框 -->
 <i-toast id="toast" />

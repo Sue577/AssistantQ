@@ -21,7 +21,7 @@ public interface RecruitRepository extends JpaRepository<RecruitModel,String>, J
     List<RecruitModel> findAllRecruit();
 
     //根据编号查找招聘信息
-    @Query("select recruitModel from RecruitModel recruitModel where recruitModel.delTime is null and recruitModel.objectId = :objectId")
+    @Query("select recruitModel from RecruitModel recruitModel where recruitModel.delTime is null and recruitModel.objectId =?1")
     RecruitModel findByObjectId(@Param("objectId") String objectId);
 
     //根据课程名称查找招聘信息

@@ -114,14 +114,14 @@ public class RecruitController {
     }
 
     //所有人根据招聘信息编号查找招聘信息 返回招聘信息
-    @GetMapping(value = "/findByObjectId")
+    @PostMapping(value = "/findByObjectId")
     public Result findByObjectId(@RequestBody RecruitModel recruitModel) {
         RecruitModel recruitResult = recruitService.findByObjectId(recruitModel.getObjectId());
         return Result.success(recruitResult);
     }
 
     //所有人根据招聘信息标题查找招聘信息 返回招聘信息列表
-    @GetMapping(value = "/findByRecrTitle")
+    @PostMapping(value = "/findByRecrTitle")
     public Result findByRecrTitle(@RequestBody RecruitModel recruitModel) {
         List<RecruitModel> list = recruitService.findByRecrTitle(recruitModel.getRecrTitle());
 

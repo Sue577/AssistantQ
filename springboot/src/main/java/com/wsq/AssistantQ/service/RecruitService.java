@@ -60,8 +60,11 @@ public class RecruitService {
             if(recruitModel.getRecrDesc() !=null && recruitItem.getRecrDesc().equals(recruitModel.getRecrDesc()) == false ){
                 recruitItem.setRecrDesc(recruitModel.getRecrDesc());
             }
-            if(recruitModel.getRecrSubmitterId() !=null && recruitItem.getRecrSubmitterId().equals(recruitModel.getRecrSubmitterId()) == false ){
-                recruitItem.setRecrSubmitterId(recruitModel.getRecrSubmitterId());
+            if(recruitModel.getRecrSubmitterName() !=null && recruitItem.getRecrSubmitterName().equals(recruitModel.getRecrSubmitterName()) == false ){
+                recruitItem.setRecrSubmitterName(recruitModel.getRecrSubmitterName());
+            }
+            if(recruitModel.getRecrDeadLine() !=null && recruitItem.getRecrDeadLine().equals(recruitModel.getRecrDeadLine()) == false ){
+                recruitItem.setRecrDeadLine(recruitModel.getRecrDeadLine());
             }
             baseService.modify(recruitRepository,recruitItem);
             recruitRepository.save(recruitItem);
